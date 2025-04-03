@@ -7,5 +7,6 @@
       "path": "/api/cron",
       "schedule": "0 1 * * *"
     }
-  ]
+  ],
+  "buildCommand": "next build"
 }
