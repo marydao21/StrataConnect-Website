@@ -1,11 +1,13 @@
 {
   "version": 2,
   "regions": ["syd1"],
+  "build": {
+        "buildCommand": "npm install && npm run build"
+    },
   "crons": [
     {
       "path": "/api/cron",
       "schedule": "0 1 * * *"
     }
   ],
-  "buildCommand": "npm install && npm run build"
 }
