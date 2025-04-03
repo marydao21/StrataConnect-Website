@@ -57,7 +57,7 @@ export default function Home() {
         {/* Right Section - Background Image */}
         <div className="w-1/2 relative">
           <Image
-            src="/picture3.jpg" // Ensure this image is inside the public/ folder
+            src="/images/picture3.jpg" // Ensure this image is inside the public/ folder
             alt="StrataConnect"
             layout="fill"
             objectFit="cover"
