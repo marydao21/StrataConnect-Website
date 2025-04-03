@@ -1,12 +1,11 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "regions": ["syd1"],
+  "buildCommand": "next build",
   "crons": [
     {
       "path": "/api/cron",
       "schedule": "0 1 * * *"
     }
-  ],
-  "buildCommand": "next build"
+  ]
 }
