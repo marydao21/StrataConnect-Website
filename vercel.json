@@ -7,7 +7,7 @@
       "schedule": "0 1 * * *"
     }
   ],
-  "build": {
-   "buildCommand": "next build"
+  {
+   "buildCommand": "npm install && npm run build"
   }
 }
