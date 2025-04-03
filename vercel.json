@@ -8,6 +8,6 @@
     }
   ],
   "build": {
-    "buildCommand": "npm install && npm run build"
+   "buildCommand": "next build"
   }
 }
