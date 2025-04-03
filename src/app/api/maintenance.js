@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
 export const config = {
-    runtime: "nodejs",
+    runtime: "edge",
 };
 
-export default function handler() {
+export function GET() {
     const requests = [
         { id: 1, issue: "Leaking roof", status: "Pending" },
         { id: 2, issue: "Broken elevator", status: "In Progress" },
