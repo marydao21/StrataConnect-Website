@@ -9,7 +9,7 @@
   ],
   "buildCommand": "next build",
   "functions": {
-    "api/payment.js": {
+    "api/payment": {
       "runtime": "edge"
     }
   }
