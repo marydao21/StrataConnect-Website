@@ -9,17 +9,12 @@ export const config = {
 
 // The GET function to return maintenance issues
 export async function GET(request) {
-  const url = new URL(request.url); // Get full request URL
-  console.log(`🔍 Incoming request URL: ${url.href}`); // Log full request
-  console.log(`🔍 Pathname: ${url.pathname}`); // Log extracted pathname
+  const { pathname } = new URL(request.url);
 
-  // Ensure only /api/maintenance is logged
-  if (url.pathname !== '/api/maintenance') {
-    console.log(`❌ Ignoring request for: ${url.pathname}`);
-    return NextResponse.json({ message: "Not found" }, { status: 404 });
+  // Filter out requests to /favicon.ico
+  if (pathname === '/favicon.ico') {
+    return NextResponse.next();
   }
-
-  console.log('✅ Received request for /api/maintenance');
 
   const requests = [
     { id: 1, issue: "Leaking roof", status: "Pending" },
@@ -27,7 +22,10 @@ export async function GET(request) {
     { id: 3, issue: "Parking gate malfunction", status: "Resolved" },
   ];
 
-  console.log('📦 Returning maintenance data:', JSON.stringify(requests, null, 2));
+  // Log the request to the Vercel logs
+  console.log('Received request for /api/maintenance');
+  console.log('Returning maintenance data:', JSON.stringify(requests, null, 2)); // Pretty-print the JSON
 
+  // Returning JSON response
   return NextResponse.json(requests);
 }
