@@ -4,9 +4,9 @@
   "crons": [
       {
           "path": "/api/cron",
-          "schedule": "*/5 * * * *"
+          "schedule": "*/10 * * * *"
       }
   ]
 }
 
-// Every day at midnight Sydney time (2:00PM UTC)
+// Runs every 10 minutes, all day, every day.
