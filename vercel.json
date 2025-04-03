@@ -2,10 +2,12 @@
   "version": 2,
   "regions": ["syd1"],
   "crons": [
-      {
-          "path": "/api/cron",
-          "schedule": "0 1 * * *"
-      }
-  ]
+    {
+      "path": "/api/cron",
+      "schedule": "0 1 * * *"
+    }
+  ],
+  "build": {
+    "buildCommand": "npm install && npm run build"
+  }
 }
-
