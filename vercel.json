@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "regions": ["syd1"],
+  "crons": [
+      {
+          "path": "/api/cron",
+          "schedule": "0 14 * * *"
+      }
+  ]
+}
+
+// Every day at midnight Sydney time (2:00PM UTC)
