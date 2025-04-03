@@ -22,9 +22,15 @@ export async function GET(request) {
     { id: 3, issue: "Parking gate malfunction", status: "Resolved" },
   ];
 
-  // Log the request to the Vercel logs
-  console.log('Received request for /api/maintenance');
-  console.log('Returning maintenance data:', JSON.stringify(requests, null, 2)); // Pretty-print the JSON
+  // Log the request to the Vercel logs with the desired format
+  const logEntry = `
+  ${new Date().toISOString()}
+  GET
+  200
+  ${request.headers.get('host')}
+  ${pathname}
+  `;
+  console.log(logEntry.trim());
 
   // Returning JSON response
   return NextResponse.json(requests);
