@@ -6,7 +6,7 @@ export default function handler(req) {
 
     return new Response(`Your next levy payment is due on ${nextPayment.toDateString()}.`, {
         status: 200,
-        headers: { "Content-Type": "text/plain" }
+        headers: { "Content-Type": "text/plain" },
     });
 }
 

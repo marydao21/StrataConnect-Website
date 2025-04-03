@@ -7,5 +7,10 @@
       "schedule": "0 1 * * *"
     }
   ],
-  "buildCommand": "next build"
+  "buildCommand": "next build",
+  "functions": {
+    "api/payment.js": {
+      "runtime": "edge"
+    }
+  }
 }
