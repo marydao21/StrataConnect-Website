@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  return new NextResponse(null, { status: 204 }); // No content, no logging
+  // Stop logging favicon by returning a no-content response
+  return new NextResponse(null, { status: 204 });
 }
