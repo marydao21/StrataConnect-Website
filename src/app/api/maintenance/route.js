@@ -8,29 +8,16 @@ export const config = {
 };
 
 // The GET function to return maintenance issues
-export async function GET(request) {
-  const { pathname } = new URL(request.url);
-
-  // Filter out requests to /favicon.ico
-  if (pathname === '/favicon.ico') {
-    return NextResponse.next();
-  }
-
+export async function GET() {
   const requests = [
     { id: 1, issue: "Leaking roof", status: "Pending" },
     { id: 2, issue: "Broken elevator", status: "In Progress" },
     { id: 3, issue: "Parking gate malfunction", status: "Resolved" },
   ];
 
-  // Log the request to the Vercel logs with the desired format
-  const logEntry = `
-  ${new Date().toISOString()}
-  GET
-  200
-  ${request.headers.get('host')}
-  ${pathname}
-  `;
-  console.log(logEntry.trim());
+  // Log the request to the Vercel logs
+  console.log('Received request for /api/maintenance');
+  console.log('Returning maintenance data:', JSON.stringify(requests, null, 2)); // Pretty-print the JSON
 
   // Returning JSON response
   return NextResponse.json(requests);
