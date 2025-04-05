@@ -3,9 +3,36 @@ import Link from 'next/link';
 
 export default function ServicesPage() {
   return (
-    <div className="bg-white text-green-900">
+    <div className="bg-white text-green-900 relative min-h-screen">
+      {/* Navigation Bar */}
+      <header className="absolute top-0 left-0 w-full bg-green-700 py-4 px-6 sm:px-12 flex justify-between items-center shadow-lg z-50">
+        <span className="text-white text-3xl font-bold tracking-wide">
+          StrataConnect
+        </span>
+        <div className="flex items-center space-x-12">
+          <nav className="flex space-x-8 text-white text-lg font-medium">
+            <Link href="/" className="hover:underline">Home</Link>
+            <Link href="/services" className="hover:underline">Services</Link>
+            <Link href="/about" className="hover:underline">About Us</Link>
+            <Link href="/contact" className="hover:underline">Contact</Link>
+          </nav>
+          <div className="flex space-x-4">
+            <Link href="/owners-login">
+              <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
+                OWNERS LOGIN
+              </button>
+            </Link>
+            <Link href="/payment">
+              <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
+                PAY MY LEVIES
+              </button>
+            </Link>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
-      <div className="relative w-full h-96">
+      <div className="relative w-full h-96 pt-20">
         <Image
           src="/images/strata-hero.jpg"
           alt="Strata Services"
