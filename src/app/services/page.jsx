@@ -93,7 +93,7 @@ export default function ServicesPage() {
 
         <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
           <div className="flex justify-center mb-4">
-            <Building2 className=\"w-10 h-10 text-green-700\" />
+            <Building2 className="w-10 h-10 text-green-700" />
           </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Developers</h3>
           <ul className="list-disc pl-5 text-left text-black space-y-1">
