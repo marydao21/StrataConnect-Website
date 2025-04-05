@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Home, Building2, BarChart, FileText } from 'lucide-react';
 
 export default function ServicesPage() {
   return (
@@ -66,13 +67,34 @@ export default function ServicesPage() {
       {/* Services Breakdown */}
       <section className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+          <div className="flex justify-center mb-4">
+            <Home className="w-10 h-10 text-green-700" />
+          </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Owners</h3>
-          <p className="text-black text-left">
-            Personalized management approach tailored to each property. Our services promote transparency, community harmony, and long-term asset value.
+          <p className="text-black text-left space-y-2">
+            <span>
+              Personalized management approach tailored to each property. Our services promote transparency, community harmony, and long-term asset value.
+            </span>
+            <br /><br />
+            <span>
+              At StrataConnect, we believe in empowering owners through clear communication,
+              proactive support, and easy access to important information. Owners can monitor
+              levy payments, maintenance schedules, meeting minutes, and insurance documents
+              all in one place through our secure online portal.
+            </span>
+            <br /><br />
+            <span>
+              We also offer flexible communication channels—email, phone, or portal messaging—
+              ensuring that every concern is addressed promptly. Whether you're an investor or
+              an owner-occupier, we’re here to help you feel confident and in control of your strata property.
+            </span>
           </p>
         </div>
 
         <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+          <div className="flex justify-center mb-4">
+            <Building2 className=\"w-10 h-10 text-green-700\" />
+          </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Developers</h3>
           <ul className="list-disc pl-5 text-left text-black space-y-1">
             <li>Advice on strata scheme setup and structure</li>
@@ -89,6 +111,9 @@ export default function ServicesPage() {
         </div>
 
         <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+          <div className="flex justify-center mb-4">
+            <BarChart className="w-10 h-10 text-green-700" />
+          </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Financial Management</h3>
           <ul className="list-disc pl-5 text-left text-black space-y-1">
             <li>Budgeting & Planning: transparent, fair levies</li>
@@ -99,6 +124,9 @@ export default function ServicesPage() {
         </div>
 
         <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+          <div className="flex justify-center mb-4">
+            <FileText className="w-10 h-10 text-green-700" />
+          </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Administration Management</h3>
           <ul className="list-disc pl-5 text-left text-black space-y-1">
             <li>Records & Documentation: fully digitized access</li>
