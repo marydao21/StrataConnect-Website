@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Home, Building2, Wallet, FileText } from 'lucide-react';
@@ -44,22 +43,18 @@ export default function ServicesPage() {
           className="z-0"
           priority
         />
-        {/* SERVICES Label Box */}
-        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-800 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
+        {/* SERVICES Label Box - darker green and fully left-aligned */}
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#043927] pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
           <h2 className="text-white text-3xl font-bold uppercase ml-6">Services</h2>
-        </div>
-        {/* Quote under the SERVICES label */}
-        <div className="absolute top-1/2 mt-[3.5rem] left-0 w-full flex justify-start pl-[72px] z-10">
-          <p className="text-green-800 text-2xl italic font-semibold text-left w-full max-w-screen-md">
-            Expert Strata Services 
-            for Every Stage
-          </p>
         </div>
       </div>
 
       {/* Our Approach Section */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold mb-4 uppercase">OUR APPROACH</h2>
+        <p className="text-2xl italic text-green-800 font-semibold mb-6">
+          Expert Strata Services for Every Stage
+        </p>
         <p className="text-lg text-black">
           StrataConnect supports owners, developers, and communities with a commitment to transparency, efficiency, and innovation. From development planning and scheme establishment to seamless day-to-day management and forward-thinking solutions, we partner with you at every stage of the strata lifecycle.
         </p>
