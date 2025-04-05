@@ -15,6 +15,7 @@ export default function ServicesPage() {
             <Link href="/" className="hover:underline">Home</Link>
             <Link href="/services" className="hover:underline">Services</Link>
             <Link href="/about" className="hover:underline">About Us</Link>
+            <Link href="/resources" className="hover:underline">Resources</Link>
             <Link href="/contact" className="hover:underline">Contact</Link>
           </nav>
           <div className="flex space-x-4">
@@ -42,9 +43,9 @@ export default function ServicesPage() {
           className="z-0"
           priority
         />
-        {/* SERVICES Label Box */}
-        <div className="absolute top-1/2 right-10 transform -translate-y-1/2 bg-green-700 px-6 py-2 rounded shadow-lg z-10">
-          <h2 className="text-white text-xl font-bold uppercase">Services</h2>
+        {/* SERVICES Label Box - enlarged, aligned left without left border */}
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-700 pl-0 pr-8 py-4 rounded-r shadow-lg z-10">
+          <h2 className="text-white text-2xl font-bold uppercase ml-4">Services</h2>
         </div>
       </div>
 
@@ -53,19 +54,20 @@ export default function ServicesPage() {
         <p className="text-lg italic text-green-800 font-semibold mb-6">
           Expert Strata Services for Every Stage
         </p>
+        <h2 className="text-3xl font-bold mb-6 uppercase">OUR APPROACH</h2>
         <p className="text-lg text-black">
           StrataConnect supports owners, developers, and communities with a commitment to transparency, efficiency, and innovation. From development planning and scheme establishment to seamless day-to-day management and forward-thinking solutions, we partner with you at every stage of the strata lifecycle.
         </p>
       </section>
 
       {/* Services Breakdown */}
-      <section className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+      <section className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10 text-center">
+        <div className="bg-gray-50 rounded-lg p-6 shadow-md">
           <div className="flex justify-center mb-4">
             <Home className="w-10 h-10 text-green-700" />
           </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Owners</h3>
-          <ul className="list-disc pl-5 text-left text-black space-y-1">
+          <ul className="list-disc list-inside text-black space-y-1">
             <li>Personalized management tailored to each property</li>
             <li>Transparency, community harmony, and asset value</li>
             <li>Access levy, maintenance, meetings, insurance via portal</li>
@@ -74,12 +76,12 @@ export default function ServicesPage() {
           </ul>
         </div>
 
-        <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+        <div className="bg-gray-50 rounded-lg p-6 shadow-md">
           <div className="flex justify-center mb-4">
             <Building2 className="w-10 h-10 text-green-700" />
           </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Developers</h3>
-          <ul className="list-disc pl-5 text-left text-black space-y-1">
+          <ul className="list-disc list-inside text-black space-y-1">
             <li>Advice on strata scheme setup and structure</li>
             <li>Registering plans and creating custom by-laws</li>
             <li>Budgeting and striking levies during Initial Period</li>
@@ -93,12 +95,12 @@ export default function ServicesPage() {
           </ul>
         </div>
 
-        <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+        <div className="bg-gray-50 rounded-lg p-6 shadow-md">
           <div className="flex justify-center mb-4">
             <Wallet className="w-10 h-10 text-green-700" />
           </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Financial Management</h3>
-          <ul className="list-disc pl-5 text-left text-black space-y-1">
+          <ul className="list-disc list-inside text-black space-y-1">
             <li>Budgeting & Planning: transparent, fair levies</li>
             <li>Accounting: real-time reporting via portal</li>
             <li>Levy Management: flexible payment options</li>
@@ -106,12 +108,12 @@ export default function ServicesPage() {
           </ul>
         </div>
 
-        <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
+        <div className="bg-gray-50 rounded-lg p-6 shadow-md">
           <div className="flex justify-center mb-4">
             <FileText className="w-10 h-10 text-green-700" />
           </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Administration Management</h3>
-          <ul className="list-disc pl-5 text-left text-black space-y-1">
+          <ul className="list-disc list-inside text-black space-y-1">
             <li>Records & Documentation: fully digitized access</li>
             <li>Insurance Handling: quotes, renewals, claims</li>
             <li>Meeting Coordination: agendas, notices, minutes</li>

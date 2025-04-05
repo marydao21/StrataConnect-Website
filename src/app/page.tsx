@@ -14,6 +14,7 @@ export default function Home() {
             <Link href="/" className="hover:underline">Home</Link>
             <Link href="/services" className="hover:underline">Services</Link>
             <Link href="/about" className="hover:underline">About Us</Link>
+            <Link href="/resources" className="hover:underline">Resources</Link>
             <Link href="/contact" className="hover:underline">Contact</Link>
           </nav>
           <div className="flex space-x-4">
