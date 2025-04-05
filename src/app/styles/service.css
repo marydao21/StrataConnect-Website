@@ -1,0 +1,54 @@
+.services-container {
+  margin: 50px auto;
+  max-width: 1200px; /* Limiting the width for a clean layout */
+  text-align: center;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #2a9d8f; /* Green for the main title */
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #264653; /* Darker text color for readability */
+  margin-bottom: 40px;
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns for the services */
+  gap: 20px; /* Space between items */
+  margin-top: 40px;
+}
+
+.service-item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the card */
+  transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.service-item:hover {
+  transform: scale(1.05); /* Slightly enlarge the item on hover */
+}
+
+.service-item h2 {
+  font-size: 2rem;
+  color: #e76f51; /* Orange color for the service titles */
+  margin-bottom: 10px;
+}
+
+.service-item p {
+  font-size: 1.1rem;
+  color: #264653;
+}
+
+@media (max-width: 768px) {
+  .services-list {
+    grid-template-columns: 1fr; /* Stack services in a single column on smaller screens */
+  }
+}
