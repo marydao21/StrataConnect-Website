@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,7 +7,7 @@ export default function Home() {
     <div className="relative min-h-screen">
       {/* Navigation Bar */}
       <header className="absolute top-0 left-0 w-full bg-green-700 py-4 px-6 sm:px-12 flex justify-between items-center shadow-lg">
-        <span className="text-white text-3xl font-bold tracking-wide">
+        <span className="text-white text-2xl font-bold tracking-wide">
           StrataConnect
         </span>
         <div className="flex items-center space-x-12">
@@ -58,7 +59,7 @@ export default function Home() {
         {/* Right Section - Background Image */}
         <div className="w-1/2 relative">
           <Image
-            src="/images/picture3.jpg" // Ensure this image is inside the public/ folder
+            src="/images/picture3.jpg"
             alt="StrataConnect"
             layout="fill"
             objectFit="cover"
