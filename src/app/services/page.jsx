@@ -50,7 +50,7 @@ export default function ServicesPage() {
         </div>
         {/* Quote under the SERVICES label */}
         <div className="absolute top-[70%] left-0 w-full flex justify-start pl-10 z-10">
-          <p className="text-white text-lg italic bg-black bg-opacity-30 px-4 py-2 rounded shadow-md max-w-xl">
+          <p className="text-green-200 text-xl italic font-medium">
             Expert Strata Services for Every Stage
           </p>
         </div>
