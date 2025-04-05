@@ -50,7 +50,7 @@ export default function AboutPage() {
       {/* Main Content */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold text-green-800 mb-2">StrataConnect – Shaping Smarter Communities</h2>
-        <h3 className="text-2xl font-semibold italic mb-6">Your Trusted Partner in Strata Management</h3>
+        <h3 className="text-2xl italic text-green-800 mb-6">Your Trusted Partner in Strata Management</h3>
         <p className="text-lg text-black mb-6">
           At StrataConnect, we believe that strong communities begin with smart, transparent, and people-focused management. Since our inception, we’ve been on a mission to simplify strata living and ownership through innovative tools, personalized service, and a deep understanding of the unique needs of every building and community we serve.
         </p>
@@ -87,28 +87,28 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <section className="max-w-5xl mx-auto px-6 py-10 text-center">
-        <h3 className="text-2xl font-bold text-green-800 mb-6">Leadership Team</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
-          <div>
-            <Image src="/images/Alex.png" alt="Alex Nguyen" width={200} height={200} className="rounded-lg object-cover" />
-            <p className="mt-2 font-semibold">Alex Nguyen – Managing Director</p>
+      <section className="max-w-6xl mx-auto px-6 py-10">
+        <h3 className="text-2xl font-bold text-green-800 mb-10 text-center">Leadership Team</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center">
+          <div className="text-center">
+            <Image src="/images/Alex.png" alt="Alex Nguyen" width={200} height={250} className="rounded-xl mx-auto" />
+            <p className="font-semibold mt-2 text-green-800">Alex Nguyen<br />Managing Director</p>
           </div>
-          <div>
-            <Image src="/images/Sophie.png" alt="Sophie Blake" width={200} height={200} className="rounded-lg object-cover" />
-            <p className="mt-2 font-semibold">Sophie Blake – Head of Operations</p>
+          <div className="text-center">
+            <Image src="/images/Sophie.png" alt="Sophie Blake" width={200} height={250} className="rounded-xl mx-auto" />
+            <p className="font-semibold mt-2 text-green-800">Sophie Blake<br />Head of Operations</p>
           </div>
-          <div>
-            <Image src="/images/Marcus.png" alt="Marcus Chen" width={200} height={200} className="rounded-lg object-cover" />
-            <p className="mt-2 font-semibold">Marcus Chen – Financial Controller</p>
+          <div className="text-center">
+            <Image src="/images/Marcus.png" alt="Marcus Chen" width={200} height={250} className="rounded-xl mx-auto" />
+            <p className="font-semibold mt-2 text-green-800">Marcus Chen<br />Financial Controller</p>
           </div>
-          <div>
-            <Image src="/images/leila.png" alt="Leila Rahimi" width={200} height={200} className="rounded-lg object-cover" />
-            <p className="mt-2 font-semibold">Leila Rahimi – Client Success Manager</p>
+          <div className="text-center">
+            <Image src="/images/leila.png" alt="Leila Rahimi" width={200} height={250} className="rounded-xl mx-auto" />
+            <p className="font-semibold mt-2 text-green-800">Leila Rahimi<br />Client Success Manager</p>
           </div>
-          <div>
-            <Image src="/images/Tom.png" alt="Tom Yuen" width={200} height={200} className="rounded-lg object-cover" />
-            <p className="mt-2 font-semibold">Tom Yuen – Digital Solutions Lead</p>
+          <div className="text-center">
+            <Image src="/images/Tom.png" alt="Tom Yuen" width={200} height={250} className="rounded-xl mx-auto" />
+            <p className="font-semibold mt-2 text-green-800">Tom Yuen<br />Digital Solutions Lead</p>
           </div>
         </div>
       </section>
@@ -117,7 +117,8 @@ export default function AboutPage() {
       <section className="max-w-5xl mx-auto px-6 py-10 text-center">
         <h3 className="text-2xl font-bold text-green-800 mb-4">Join Our Team</h3>
         <p className="text-lg text-black mb-4">
-          We’re always on the lookout for energetic, customer-focused professionals to join the StrataConnect family. If you're passionate about improving communities and love working in a fast-paced, supportive environment, we want to hear from you.
+          We’re always on the lookout for energetic, customer-focused professionals to join the StrataConnect family.<br />
+          If you're passionate about improving communities and love working in a fast-paced, supportive environment, we want to hear from you.
         </p>
         <p className="text-lg text-black">
           Send your CV or enquiry to <a href="mailto:careers@strataconnect.com.au" className="text-green-700 underline">careers@strataconnect.com.au</a>
