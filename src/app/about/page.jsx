@@ -50,7 +50,7 @@ export default function AboutPage() {
       {/* Main Content */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold text-green-800 mb-2">StrataConnect – Shaping Smarter Communities</h2>
-        <h3 className="text-2xl font-semibold mb-6">Your Trusted Partner in Strata Management</h3>
+        <h3 className="text-2xl font-semibold italic mb-6">Your Trusted Partner in Strata Management</h3>
         <p className="text-lg text-black mb-6">
           At StrataConnect, we believe that strong communities begin with smart, transparent, and people-focused management. Since our inception, we’ve been on a mission to simplify strata living and ownership through innovative tools, personalized service, and a deep understanding of the unique needs of every building and community we serve.
         </p>
@@ -87,22 +87,29 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <section className="max-w-6xl mx-auto px-6 py-10">
-        <h3 className="text-2xl font-bold text-green-800 mb-10 text-center">Leadership Team</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-          {[
-            { name: "Alex Nguyen", title: "Managing Director", src: "/images/Alex.png" },
-            { name: "Sophie Blake", title: "Head of Operations", src: "/images/Sophie.png" },
-            { name: "Marcus Chen", title: "Financial Controller", src: "/images/Marcus.png" },
-            { name: "Leila Rahimi", title: "Client Success Manager", src: "/images/leila.png" },
-            { name: "Tom Yuen", title: "Digital Solutions Lead", src: "/images/Tom.png" },
-          ].map((member) => (
-            <div key={member.name} className="flex flex-col items-center">
-              <Image src={member.src} alt={member.name} width={160} height={160} className="rounded-full object-cover mb-4" />
-              <h4 className="font-bold text-lg text-green-800">{member.name}</h4>
-              <p className="text-black">{member.title}</p>
-            </div>
-          ))}
+      <section className="max-w-5xl mx-auto px-6 py-10 text-center">
+        <h3 className="text-2xl font-bold text-green-800 mb-6">Leadership Team</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+          <div>
+            <Image src="/images/Alex.png" alt="Alex Nguyen" width={200} height={200} className="rounded-lg object-cover" />
+            <p className="mt-2 font-semibold">Alex Nguyen – Managing Director</p>
+          </div>
+          <div>
+            <Image src="/images/Sophie.png" alt="Sophie Blake" width={200} height={200} className="rounded-lg object-cover" />
+            <p className="mt-2 font-semibold">Sophie Blake – Head of Operations</p>
+          </div>
+          <div>
+            <Image src="/images/Marcus.png" alt="Marcus Chen" width={200} height={200} className="rounded-lg object-cover" />
+            <p className="mt-2 font-semibold">Marcus Chen – Financial Controller</p>
+          </div>
+          <div>
+            <Image src="/images/leila.png" alt="Leila Rahimi" width={200} height={200} className="rounded-lg object-cover" />
+            <p className="mt-2 font-semibold">Leila Rahimi – Client Success Manager</p>
+          </div>
+          <div>
+            <Image src="/images/Tom.png" alt="Tom Yuen" width={200} height={200} className="rounded-lg object-cover" />
+            <p className="mt-2 font-semibold">Tom Yuen – Digital Solutions Lead</p>
+          </div>
         </div>
       </section>
 
@@ -118,11 +125,13 @@ export default function AboutPage() {
         <p className="text-sm text-gray-600 mt-2">Your privacy and confidentiality are always respected.</p>
       </section>
 
-      {/* Request a Quote CTA */}
+      {/* CTA Section */}
       <section className="text-center py-12 bg-green-700 text-white">
-        <Link href="/properties">
+        <h2 className="text-3xl font-bold mb-4">Ready to simplify your strata management?</h2>
+        <p className="mb-4">Talk to our team today and discover tailored solutions that fit your property needs.</p>
+        <Link href="/contact">
           <button className="bg-white text-green-700 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">
-            Request a Quote
+            Contact Us
           </button>
         </Link>
       </section>
