@@ -50,11 +50,6 @@ export default function AboutPage() {
       {/* Main Content */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold text-green-800 mb-2">StrataConnect – Shaping Smarter Communities</h2>
-        <Link href="/properties">
-          <button className="bg-green-700 text-white px-6 py-3 my-4 rounded-full text-lg hover:bg-green-800 transition">
-            Request a Quote
-          </button>
-        </Link>
         <h3 className="text-2xl font-semibold mb-6">Your Trusted Partner in Strata Management</h3>
         <p className="text-lg text-black mb-6">
           At StrataConnect, we believe that strong communities begin with smart, transparent, and people-focused management. Since our inception, we’ve been on a mission to simplify strata living and ownership through innovative tools, personalized service, and a deep understanding of the unique needs of every building and community we serve.
@@ -92,16 +87,23 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <section className="max-w-5xl mx-auto px-6 py-10">
-        <h3 className="text-2xl font-bold text-green-800 mb-6 text-center">Leadership Team</h3>
-        <ul className="space-y-4 text-lg text-black">
-          <li><strong>Alex Nguyen</strong> – Managing Director</li>
-          <li><strong>Sophie Blake</strong> – Head of Operations</li>
-          <li><strong>Marcus Chen</strong> – Financial Controller</li>
-          <li><strong>Leila Rahimi</strong> – Client Success Manager</li>
-          <li><strong>Tom Yuen</strong> – Digital Solutions Lead</li>
-        </ul>
-        <p className="text-sm italic mt-2">(Replace names with actual people if available)</p>
+      <section className="max-w-6xl mx-auto px-6 py-10">
+        <h3 className="text-2xl font-bold text-green-800 mb-10 text-center">Leadership Team</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+          {[
+            { name: "Alex Nguyen", title: "Managing Director", src: "/images/Alex.png" },
+            { name: "Sophie Blake", title: "Head of Operations", src: "/images/Sophie.png" },
+            { name: "Marcus Chen", title: "Financial Controller", src: "/images/Marcus.png" },
+            { name: "Leila Rahimi", title: "Client Success Manager", src: "/images/leila.png" },
+            { name: "Tom Yuen", title: "Digital Solutions Lead", src: "/images/Tom.png" },
+          ].map((member) => (
+            <div key={member.name} className="flex flex-col items-center">
+              <Image src={member.src} alt={member.name} width={160} height={160} className="rounded-full object-cover mb-4" />
+              <h4 className="font-bold text-lg text-green-800">{member.name}</h4>
+              <p className="text-black">{member.title}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Join Our Team */}
@@ -114,6 +116,15 @@ export default function AboutPage() {
           Send your CV or enquiry to <a href="mailto:careers@strataconnect.com.au" className="text-green-700 underline">careers@strataconnect.com.au</a>
         </p>
         <p className="text-sm text-gray-600 mt-2">Your privacy and confidentiality are always respected.</p>
+      </section>
+
+      {/* Request a Quote CTA */}
+      <section className="text-center py-12 bg-green-700 text-white">
+        <Link href="/properties">
+          <button className="bg-white text-green-700 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">
+            Request a Quote
+          </button>
+        </Link>
       </section>
     </div>
   );
