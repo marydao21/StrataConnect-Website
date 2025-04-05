@@ -44,7 +44,7 @@ export default function ServicesPage() {
           priority
         />
         {/* SERVICES Label Box - darker green and fully left-aligned */}
-        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#043927] pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
           <h2 className="text-white text-3xl font-bold uppercase ml-6">Services</h2>
         </div>
       </div>
