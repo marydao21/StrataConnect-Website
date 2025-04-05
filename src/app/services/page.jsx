@@ -32,7 +32,7 @@ export default function ServicesPage() {
         </div>
       </header>
 
-      {/* Hero Section with Background Image */}
+      {/* Hero Section with Background Image and SERVICES label */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
           src="/images/picture4.avif"
@@ -42,22 +42,22 @@ export default function ServicesPage() {
           className="z-0"
           priority
         />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-4 backdrop-brightness-100">
-            <h1 className="text-white text-4xl font-bold mb-4 uppercase drop-shadow-lg">
-              Expert Strata Services for Every Stage
-            </h1>
-            <p className="text-white text-lg drop-shadow">
-              Supporting owners, developers, and communities with transparency, efficiency, and innovation.
-            </p>
-          </div>
+        {/* SERVICES Label Box */}
+        <div className="absolute top-20 left-10 bg-green-700 px-6 py-2 rounded shadow-lg z-10">
+          <h2 className="text-white text-xl font-bold uppercase">Services</h2>
         </div>
       </div>
 
-      {/* Intro Section */}
+      {/* Our Approach Section (with moved quote) */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold mb-6 uppercase">Our Approach</h2>
-        <p className="text-lg text-black">
+        <p className="text-lg text-black mb-6">
+          Expert Strata Services for Every Stage
+        </p>
+        <p className="text-md text-black">
+          Supporting owners, developers, and communities with transparency, efficiency, and innovation.
+        </p>
+        <p className="text-lg text-black mt-10">
           StrataConnect partners with property owners, residents, and developers
           throughout the entire strata lifecycle — from development planning and
           scheme establishment, to efficient day-to-day management and
@@ -127,7 +127,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section - smaller spacing */}
+      {/* CTA Section */}
       <section className="text-center py-12 bg-green-700 text-white">
         <h2 className="text-3xl font-bold mb-4">Ready to simplify your strata management?</h2>
         <p className="mb-4">Talk to our team today and discover tailored solutions that fit your property needs.</p>
