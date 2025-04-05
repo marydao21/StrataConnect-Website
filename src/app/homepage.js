@@ -1,5 +1,5 @@
 // pages/index.js
-import styles from '../styles/Home.module.css';
+import styles from '../styles/home.css';
 
 export default function Home() {
   return (
