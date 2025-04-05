@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Home, Building2, BarChart, FileText } from 'lucide-react';
+import { Home, Building2, Wallet, FileText } from 'lucide-react';
 
 export default function ServicesPage() {
   return (
@@ -71,24 +71,13 @@ export default function ServicesPage() {
             <Home className="w-10 h-10 text-green-700" />
           </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Owners</h3>
-          <p className="text-black text-left space-y-2">
-            <span>
-              Personalized management approach tailored to each property. Our services promote transparency, community harmony, and long-term asset value.
-            </span>
-            <br /><br />
-            <span>
-              At StrataConnect, we believe in empowering owners through clear communication,
-              proactive support, and easy access to important information. Owners can monitor
-              levy payments, maintenance schedules, meeting minutes, and insurance documents
-              all in one place through our secure online portal.
-            </span>
-            <br /><br />
-            <span>
-              We also offer flexible communication channels—email, phone, or portal messaging—
-              ensuring that every concern is addressed promptly. Whether you're an investor or
-              an owner-occupier, we’re here to help you feel confident and in control of your strata property.
-            </span>
-          </p>
+          <ul className="list-disc pl-5 text-left text-black space-y-1">
+            <li>Personalized management tailored to each property</li>
+            <li>Transparency, community harmony, and asset value</li>
+            <li>Access levy, maintenance, meetings, insurance via portal</li>
+            <li>Supportive communication via email, phone, portal</li>
+            <li>Help for both investors and owner-occupiers</li>
+          </ul>
         </div>
 
         <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
@@ -112,7 +101,7 @@ export default function ServicesPage() {
 
         <div className="bg-gray-50 rounded-lg p-6 shadow-md text-center">
           <div className="flex justify-center mb-4">
-            <BarChart className="w-10 h-10 text-green-700" />
+            <Wallet className="w-10 h-10 text-green-700" />
           </div>
           <h3 className="text-2xl font-bold mb-4 text-green-800 uppercase">Financial Management</h3>
           <ul className="list-disc pl-5 text-left text-black space-y-1">
