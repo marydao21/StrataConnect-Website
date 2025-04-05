@@ -43,25 +43,18 @@ export default function ServicesPage() {
           priority
         />
         {/* SERVICES Label Box */}
-        <div className="absolute top-20 left-10 bg-green-700 px-6 py-2 rounded shadow-lg z-10">
+        <div className="absolute top-1/2 right-10 transform -translate-y-1/2 bg-green-700 px-6 py-2 rounded shadow-lg z-10">
           <h2 className="text-white text-xl font-bold uppercase">Services</h2>
         </div>
       </div>
 
-      {/* Our Approach Section (with moved quote) */}
+      {/* Our Approach Section */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold mb-6 uppercase">Our Approach</h2>
-        <p className="text-lg text-black mb-6">
+        <p className="text-lg italic text-green-800 font-semibold mb-6">
           Expert Strata Services for Every Stage
         </p>
-        <p className="text-md text-black">
-          Supporting owners, developers, and communities with transparency, efficiency, and innovation.
-        </p>
-        <p className="text-lg text-black mt-10">
-          StrataConnect partners with property owners, residents, and developers
-          throughout the entire strata lifecycle — from development planning and
-          scheme establishment, to efficient day-to-day management and
-          future-ready solutions.
+        <p className="text-lg text-black">
+          StrataConnect supports owners, developers, and communities with a commitment to transparency, efficiency, and innovation. From development planning and scheme establishment to seamless day-to-day management and forward-thinking solutions, we partner with you at every stage of the strata lifecycle.
         </p>
       </section>
 
