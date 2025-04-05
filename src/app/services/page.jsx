@@ -46,11 +46,11 @@ export default function ServicesPage() {
         />
         {/* SERVICES Label Box */}
         <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#043927] pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
-          <h2 className="text-white text-3xl font-bold uppercase ml-6">Services</h2>
+          <h2 className="text-green-800 text-3xl font-bold uppercase ml-6">Services</h2>
         </div>
         {/* Quote under the SERVICES label */}
-        <div className="absolute top-[70%] left-0 w-full flex justify-start pl-10 z-10">
-          <p className="text-green-200 text-xl italic font-medium">
+        <div className="absolute top-[calc(50%+60px)] left-0 w-full flex justify-start pl-[60px] z-10">
+          <p className="text-green-800 text-xl italic font-medium">
             Expert Strata Services for Every Stage
           </p>
         </div>
