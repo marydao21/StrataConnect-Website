@@ -35,7 +35,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/about-bg.png"
+          src="/images/Background for AboutUs page.png"
           alt="About StrataConnect"
           layout="fill"
           objectFit="cover"
