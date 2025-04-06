@@ -35,7 +35,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/about-hero.avif"
+          src="/images/Background for AboutUs page.webp"
           alt="About StrataConnect"
           layout="fill"
           objectFit="cover"
@@ -112,7 +112,7 @@ export default function AboutPage() {
         <h3 className="text-2xl font-bold text-green-800 mb-4">Join Our Team</h3>
         <p className="text-lg text-black mb-4">
           StrataConnect is always seeking dedicated, customer-focused professionals to join our team.<br />
-          If you’re passionate about community and enjoy working in a dynamic, supportive environment, we’d be delighted to hear from you.
+          If you are passionate about community and enjoy working in a dynamic, supportive environment, we would be delighted to hear from you.
         </p>
         <p className="text-lg text-black">
           Send your CV or enquiry to <a href="mailto:careers@strataconnect.com.au" className="text-green-700 underline">careers@strataconnect.com.au</a>
