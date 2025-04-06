@@ -35,7 +35,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/picture4.avif"
+          src="/images/about-bg.png"
           alt="About StrataConnect"
           layout="fill"
           objectFit="cover"
@@ -90,31 +90,20 @@ export default function AboutPage() {
       <section className="max-w-6xl mx-auto px-6 py-10 text-center">
         <h3 className="text-2xl font-bold text-green-800 mb-10">Leadership Team</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center">
-          <div>
-            <Image src="/images/Alex.png" alt="Alex Nguyen" width={200} height={250} className="rounded-lg object-cover" />
-            <h4 className="text-lg font-bold mt-4">Alex Nguyen</h4>
-            <p className="text-sm text-gray-800">Managing Director</p>
-          </div>
-          <div>
-            <Image src="/images/Sophie.png" alt="Sophie Blake" width={200} height={250} className="rounded-lg object-cover" />
-            <h4 className="text-lg font-bold mt-4">Sophie Blake</h4>
-            <p className="text-sm text-gray-800">Head of Operations</p>
-          </div>
-          <div>
-            <Image src="/images/Marcus.png" alt="Marcus Chen" width={200} height={250} className="rounded-lg object-cover" />
-            <h4 className="text-lg font-bold mt-4">Marcus Chen</h4>
-            <p className="text-sm text-gray-800">Financial Controller</p>
-          </div>
-          <div>
-            <Image src="/images/leila.png" alt="Leila Rahimi" width={200} height={250} className="rounded-lg object-cover" />
-            <h4 className="text-lg font-bold mt-4">Leila Rahimi</h4>
-            <p className="text-sm text-gray-800">Client Success Manager</p>
-          </div>
-          <div>
-            <Image src="/images/Tom.png" alt="Tom Yuen" width={200} height={250} className="rounded-lg object-cover" />
-            <h4 className="text-lg font-bold mt-4">Tom Yuen</h4>
-            <p className="text-sm text-gray-800">Digital Solutions Lead</p>
-          </div>
+          {[
+            { name: 'Alex Nguyen', title: 'Group Managing Director', img: 'Alex.png' },
+            { name: 'Sophie Blake', title: 'Chief Executive Officer', img: 'Sophie.png' },
+            { name: 'Marcus Chen', title: 'Chief Operating Officer', img: 'Marcus.png' },
+            { name: 'Leila Rahimi', title: 'Executive General Manager – Finance', img: 'leila.png' },
+            { name: 'Tom Yuen', title: 'Executive General Manager – Property Services', img: 'Tom.png' },
+            { name: 'Marie Scott', title: 'Executive General Manager – People & Culture', img: 'marie.png' },
+          ].map(member => (
+            <div key={member.name} className="text-center">
+              <Image src={`/images/${member.img}`} alt={member.name} width={200} height={250} className="rounded-lg object-cover" />
+              <h4 className="text-lg font-bold mt-4">{member.name}</h4>
+              <p className="text-sm text-gray-800 whitespace-pre-wrap">{member.title}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -122,7 +111,8 @@ export default function AboutPage() {
       <section className="max-w-5xl mx-auto px-6 py-10 text-center">
         <h3 className="text-2xl font-bold text-green-800 mb-4">Join Our Team</h3>
         <p className="text-lg text-black mb-4">
-          We’re always on the lookout for energetic, customer-focused professionals to join the StrataConnect family. If you're passionate about improving communities and love working in a fast-paced, supportive environment,<br /> we want to hear from you.
+          We’re always on the lookout for energetic, customer-focused professionals to join the StrataConnect family.<br />
+          If you're passionate about improving communities and love working in a fast-paced, supportive environment, we want to hear from you.
         </p>
         <p className="text-lg text-black">
           Send your CV or enquiry to <a href="mailto:careers@strataconnect.com.au" className="text-green-700 underline">careers@strataconnect.com.au</a>

@@ -53,7 +53,7 @@ export default function ServicesPage() {
       {/* Our Approach Section */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold mb-4 uppercase">OUR APPROACH</h2>
-        <p className="text-2xl italic text-green-800 font-semibold mb-6">
+        <p className="text-2xl italic text-green-800 font-medium mb-6">
           Expert Strata Services for Every Stage
         </p>
         <p className="text-lg text-black">
