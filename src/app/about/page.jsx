@@ -64,13 +64,13 @@ export default function AboutPage() {
 
       {/* Why Choose Us Section */}
       <section className="max-w-5xl mx-auto px-6 py-10">
-        <h3 className="text-2xl font-bold uppercase text-green-800 mb-6">Why Choose StrataConnect?</h3>
+        <h3 className="text-2xl font-bold uppercase text-green-800 mb-6">Why Choose Strata Connect?</h3>
         <ul className="list-disc pl-6 text-lg text-black space-y-4">
           <li><strong>Dedicated Local Teams:</strong> We bring hands-on service backed by a national perspective.</li>
           <li><strong>Smart Technology:</strong> Access documents, pay levies, and raise issues—all in one place.</li>
           <li><strong>Transparent Operations:</strong> Real-time insights and clear reporting for all stakeholders.</li>
           <li><strong>Flexible Communication:</strong> We listen and respond quickly—whether online, by phone, or in person.</li>
-          <li><strong>Sustainable Growth:</strong> We’re here for the long term, investing in people, innovation, and community wellbeing.</li>
+          <li><strong>Sustainable Growth:</strong> We are here for the long term, investing in people, innovation, and community wellbeing.</li>
         </ul>
       </section>
 
