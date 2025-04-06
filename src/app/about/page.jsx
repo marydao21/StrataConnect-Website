@@ -88,37 +88,20 @@ export default function AboutPage() {
 
       {/* Leadership Team */}
       <section className="max-w-6xl mx-auto px-6 py-10 text-center">
-        <h3 className="text-2xl font-bold text-green-800 mb-10">Leadership Team</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {[{
-            name: "Alex Nguyen",
-            title: "Group Managing Director",
-            img: "/images/Alex.png"
-          }, {
-            name: "Sophie Blake",
-            title: "Chief Executive Officer",
-            img: "/images/Sophie.png"
-          }, {
-            name: "Marcus Chen",
-            title: "Chief Operating Officer",
-            img: "/images/Marcus.png"
-          }, {
-            name: "Leila Rahimi",
-            title: "Executive General Manager – Finance",
-            img: "/images/leila.png"
-          }, {
-            name: "Tom Yuen",
-            title: "Executive General Manager – Property Services",
-            img: "/images/Tom.png"
-          }, {
-            name: "Marie Scott",
-            title: "Executive General Manager – People & Culture",
-            img: "/images/marie.png"
-          }].map((member, index) => (
+        <h3 className="text-3xl font-bold text-green-800 mb-10">Our Group Leadership Team</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+          {[
+            { name: "Alex Nguyen", title: "Group Managing Director", img: "/images/Alex.png" },
+            { name: "Sophie Blake", title: "Chief Executive Officer", img: "/images/Sophie.png" },
+            { name: "Marcus Chen", title: "Chief Operating Officer", img: "/images/Marcus.png" },
+            { name: "Leila Rahimi", title: "Executive General Manager – Finance", img: "/images/leila.png" },
+            { name: "Tom Yuen", title: "Executive General Manager – Property Services", img: "/images/Tom.png" },
+            { name: "Marie Scott", title: "Executive General Manager – People & Culture", img: "/images/marie.png" }
+          ].map((member, index) => (
             <div key={index} className="flex flex-col items-center">
               <Image src={member.img} alt={member.name} width={220} height={270} className="rounded-lg object-cover" />
-              <h4 className="text-lg font-bold mt-4">{member.name}</h4>
-              <p className="text-sm text-gray-800">{member.title}</p>
+              <h4 className="text-xl font-bold mt-4">{member.name}</h4>
+              <p className="text-base text-gray-800">{member.title}</p>
             </div>
           ))}
         </div>
