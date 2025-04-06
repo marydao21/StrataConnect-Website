@@ -35,7 +35,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/Background for AboutUs page.png"
+          src="/images/about-hero.avif"
           alt="About StrataConnect"
           layout="fill"
           objectFit="cover"
@@ -89,19 +89,36 @@ export default function AboutPage() {
       {/* Leadership Team */}
       <section className="max-w-6xl mx-auto px-6 py-10 text-center">
         <h3 className="text-2xl font-bold text-green-800 mb-10">Leadership Team</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center">
-          {[
-            { name: 'Alex Nguyen', title: 'Group Managing Director', img: 'Alex.png' },
-            { name: 'Sophie Blake', title: 'Chief Executive Officer', img: 'Sophie.png' },
-            { name: 'Marcus Chen', title: 'Chief Operating Officer', img: 'Marcus.png' },
-            { name: 'Leila Rahimi', title: 'Executive General Manager – Finance', img: 'leila.png' },
-            { name: 'Tom Yuen', title: 'Executive General Manager – Property Services', img: 'Tom.png' },
-            { name: 'Marie Scott', title: 'Executive General Manager – People & Culture', img: 'marie.png' },
-          ].map(member => (
-            <div key={member.name} className="text-center">
-              <Image src={`/images/${member.img}`} alt={member.name} width={200} height={250} className="rounded-lg object-cover" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          {[{
+            name: "Alex Nguyen",
+            title: "Group Managing Director",
+            img: "/images/Alex.png"
+          }, {
+            name: "Sophie Blake",
+            title: "Chief Executive Officer",
+            img: "/images/Sophie.png"
+          }, {
+            name: "Marcus Chen",
+            title: "Chief Operating Officer",
+            img: "/images/Marcus.png"
+          }, {
+            name: "Leila Rahimi",
+            title: "Executive General Manager – Finance",
+            img: "/images/leila.png"
+          }, {
+            name: "Tom Yuen",
+            title: "Executive General Manager – Property Services",
+            img: "/images/Tom.png"
+          }, {
+            name: "Marie Scott",
+            title: "Executive General Manager – People & Culture",
+            img: "/images/marie.png"
+          }].map((member, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <Image src={member.img} alt={member.name} width={220} height={270} className="rounded-lg object-cover" />
               <h4 className="text-lg font-bold mt-4">{member.name}</h4>
-              <p className="text-sm text-gray-800 whitespace-pre-wrap">{member.title}</p>
+              <p className="text-sm text-gray-800">{member.title}</p>
             </div>
           ))}
         </div>
@@ -111,8 +128,8 @@ export default function AboutPage() {
       <section className="max-w-5xl mx-auto px-6 py-10 text-center">
         <h3 className="text-2xl font-bold text-green-800 mb-4">Join Our Team</h3>
         <p className="text-lg text-black mb-4">
-          We’re always on the lookout for energetic, customer-focused professionals to join the StrataConnect family.<br />
-          If you're passionate about improving communities and love working in a fast-paced, supportive environment, we want to hear from you.
+          StrataConnect is always seeking dedicated, customer-focused professionals to join our team.<br />
+          If you’re passionate about community and enjoy working in a dynamic, supportive environment, we’d be delighted to hear from you.
         </p>
         <p className="text-lg text-black">
           Send your CV or enquiry to <a href="mailto:careers@strataconnect.com.au" className="text-green-700 underline">careers@strataconnect.com.au</a>
