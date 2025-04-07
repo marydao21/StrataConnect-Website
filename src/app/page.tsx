@@ -59,7 +59,7 @@ export default function Home() {
         {/* Right Section - Background Image */}
         <div className="w-1/2 relative">
           <Image
-            src="/images/picture3.jpg"
+            src=".next/static/images/picture3.jpg"
             alt="StrataConnect"
             layout="fill"
             objectFit="cover"

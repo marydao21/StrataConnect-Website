@@ -35,7 +35,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/Background for AboutUs page.webp"
+          src=".next/static/images/Background for AboutUs page.webp"
           alt="About StrataConnect"
           layout="fill"
           objectFit="cover"
@@ -91,12 +91,12 @@ export default function AboutPage() {
         <h3 className="text-3xl font-bold text-green-800 mb-10">Our Group Leadership Team</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
           {[
-            { name: "Alex Nguyen", title: "Group Managing Director", img: "/images/Alex.png" },
-            { name: "Sophie Blake", title: "Chief Executive Officer", img: "/images/Sophie.png" },
-            { name: "Marcus Chen", title: "Chief Operating Officer", img: "/images/Marcus.png" },
-            { name: "Leila Rahimi", title: "Executive General Manager – Finance", img: "/images/leila.png" },
-            { name: "Tom Yuen", title: "Executive General Manager – Property Services", img: "/images/Tom.png" },
-            { name: "Marie Scott", title: "Executive General Manager – People & Culture", img: "/images/marie.png" }
+            { name: "Alex Nguyen", title: "Group Managing Director", img: ".next/static/images/Alex.png" },
+            { name: "Sophie Blake", title: "Chief Executive Officer", img: ".next/static/images/Sophie.png" },
+            { name: "Marcus Chen", title: "Chief Operating Officer", img: ".next/static/images/Marcus.png" },
+            { name: "Leila Rahimi", title: "Executive General Manager – Finance", img: ".next/static/images/leila.png" },
+            { name: "Tom Yuen", title: "Executive General Manager – Property Services", img: ".next/static/images/Tom.png" },
+            { name: "Marie Scott", title: "Executive General Manager – People & Culture", img: ".next/static/images/marie.png" }
           ].map((member, index) => (
             <div key={index} className="flex flex-col items-center">
               <Image src={member.img} alt={member.name} width={220} height={270} className="rounded-lg object-cover" />
