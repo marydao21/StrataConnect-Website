@@ -37,7 +37,7 @@ export default function ServicesPage() {
       {/* Hero Section with Background Image and SERVICES label */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="public/images/picture4.avif"
+          src="/images/picture4.avif"
           alt="Strata Services"
           layout="fill"
           objectFit="cover"
