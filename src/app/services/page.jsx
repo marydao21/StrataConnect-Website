@@ -37,7 +37,7 @@ export default function ServicesPage() {
       {/* Hero Section with Background Image and SERVICES label */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src=".next/static/images/picture4.avif"
+          src="/Users/mary/Library/CloudStorage/OneDrive-Personal/3rd-YEAR/SEM-1/INFO1111/Self-Learning/strata-connect/.next/static/images/picture4.aviff"
           alt="Strata Services"
           layout="fill"
           objectFit="cover"
