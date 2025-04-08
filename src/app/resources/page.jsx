@@ -55,32 +55,36 @@ export default function ResourcesPage() {
           Whether you're an owner, tenant, committee member or prospective buyer, this is your central hub for access, requests, and support.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {[{
             title: '🔐 My Portal',
             actions: ['View levy notices & pay online', 'Access financial statements and meeting minutes', 'Track maintenance requests', 'Update your contact details', 'Receive important notices electronically'],
             button: 'Login Now'
           }, {
             title: '🧾 Manage Your Property Details',
-            actions: ['Change Contact Information', 'Go Paperless — Email delivery for all notices', 'Pay My Levies — BPAY, EFT, card']
+            actions: ['Change Contact Information', 'Go Paperless — Email delivery for all notices', 'Pay My Levies — BPAY, EFT, card'],
+            button: 'Update Info'
           }, {
             title: '📥 Submit a Request or Application',
-            actions: ['Pet Application — Request pet approval', 'Renovation Request — Apply for renovation consent', 'Keys & Remotes — Replacement or new', 'Maintenance Request — Report an issue']
+            actions: ['Pet Application — Request pet approval', 'Renovation Request — Apply for renovation consent', 'Keys & Remotes — Replacement or new', 'Maintenance Request — Report an issue'],
+            button: 'Submit Request'
           }, {
             title: '🗳️ Proxy Appointment Forms',
             actions: ['Strata Title – General Meeting', 'Strata Committee Proxy Form', 'Company Title Proxy Form', 'Community Association Proxy Form'],
             button: 'Download Form'
           }, {
             title: '📑 Legal & Property Documents',
-            actions: ['Request Section 184 Certificate', 'Request Section 174 Certificate', 'Book a Strata Search']
+            actions: ['Request Section 184 Certificate', 'Request Section 174 Certificate', 'Book a Strata Search'],
+            button: 'Request Docs'
           }, {
             title: '🗂️ Useful Downloads & Information',
-            actions: ['Download Brochure', 'View Legislation & Key Links', 'Electronic Voting']
+            actions: ['Download Brochure', 'View Legislation & Key Links', 'Electronic Voting'],
+            button: 'Explore'
           }, {
             title: (
               <div className="flex flex-col items-center">
                 <ClipboardList className="w-10 h-10 text-green-700 mb-2" />
-                Request a Quote
+                <span className="text-green-800 font-bold">Request a Quote</span>
               </div>
             ),
             actions: ['Get started today'],
@@ -89,7 +93,7 @@ export default function ResourcesPage() {
             title: (
               <div className="flex flex-col items-center">
                 <PhoneCall className="w-10 h-10 text-green-700 mb-2" />
-                Book a Discovery Call
+                <span className="text-green-800 font-bold">Book a Discovery Call</span>
               </div>
             ),
             actions: ['Book a call with us'],
@@ -98,21 +102,23 @@ export default function ResourcesPage() {
             title: (
               <div className="flex flex-col items-center">
                 <HeartPulse className="w-10 h-10 text-green-700 mb-2" />
-                Health Check
+                <span className="text-green-800 font-bold">Health Check</span>
               </div>
             ),
             actions: ['Take the Strata Health Check'],
             button: 'Get Started'
           }].map((section, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-md flex flex-col justify-between items-center text-center">
-              <h4 className="text-xl font-bold text-green-800 mb-4">{section.title}</h4>
-              <ul className="list-disc pl-5 space-y-2 text-black text-left w-full">
+            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-md flex flex-col justify-between text-center">
+              <div className="mb-4 text-xl font-bold text-green-800">{section.title}</div>
+              <ul className="list-disc pl-5 space-y-2 text-black text-left mb-4">
                 {section.actions.map((action, i) => <li key={i}>{action}</li>)}
               </ul>
               {section.button && (
-                <button className="mt-6 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition mx-auto">
-                  {section.button}
-                </button>
+                <div className="flex justify-center">
+                  <button className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition">
+                    {section.button}
+                  </button>
+                </div>
               )}
             </div>
           ))}
