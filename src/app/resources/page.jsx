@@ -1,145 +1,130 @@
-"use client";
-
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ResourcesPage() {
-  const sections = [
+  const resources = [
     {
       title: 'My Portal',
-      icon: '🔐',
-      actions: [
+      description: [
         'View and download levy notices',
         'Access financial statements and meeting minutes',
         'Track maintenance requests',
         'Update your contact details',
-        'Receive important notices electronically'
+        'Receive important notices electronically',
       ],
-      button: 'Login Now'
+      buttonText: 'Login Now',
     },
     {
       title: 'Manage Your Property Details',
-      icon: '🧾',
-      actions: [
+      description: [
         'Change Contact Information',
-        'Go Paperless – Choose email delivery for all notices',
-        'Pay My Levies – BPAY, EFT, credit card options'
-      ]
+        'Go Paperless – Email delivery for notices',
+        'Pay My Levies – BPAY, EFT, credit card',
+      ],
+      buttonText: 'Manage Info',
     },
     {
       title: 'Submit a Request or Application',
-      icon: '📥',
-      actions: [
+      description: [
         'Pet Application Form – Request pet approval',
         'Renovation Request – Apply for renovation consent',
-        'Keys & Remotes Request – Replacement or new access devices',
-        'Maintenance Request Form – Log an issue in your building'
-      ]
+        'Keys & Remotes Request – Order access devices',
+        'Maintenance Request Form – Report an issue',
+      ],
+      buttonText: 'Submit Request',
     },
     {
       title: 'Proxy Appointment Forms',
-      icon: '🗳️',
-      actions: [
+      description: [
         'Strata Title – General Meeting',
         'Strata Committee Proxy Form',
         'Company Title Proxy Form',
-        'Community Association Proxy Form'
+        'Community Association Proxy Form',
       ],
-      note: 'Each form includes submission instructions and key deadlines.'
+      buttonText: 'Download Form',
     },
     {
       title: 'Legal & Property Documents',
-      icon: '📁',
-      actions: [
-        'Request Section 184 Certificate – For sales and conveyancing',
-        'Request Section 174 Certificate – For community associations',
-        'Book a Strata Search – Arrange document access and review'
-      ]
+      description: [
+        'Request Section 184 Certificate – Sales use',
+        'Request Section 174 Certificate – Community use',
+        'Book a Strata Search – Document review',
+      ],
+      buttonText: 'Get Document',
     },
     {
       title: 'Useful Downloads & Information',
-      icon: '🗂️',
-      actions: [
+      description: [
         'Download StrataConnect Brochure',
         'View Legislation & Key Links',
-        'Electronic Voting'
-      ]
+        'Electronic Voting – Submit vote online',
+      ],
+      buttonText: 'View Resources',
     },
     {
       title: 'Health Check for Your Building',
-      icon: '✅',
-      actions: [
-        'Take the Strata Health Check and see how StrataConnect can help.'
+      description: [
+        'Take the Strata Health Check to assess your setup and see how we can help.',
       ],
-      button: 'Get Started'
+      buttonText: 'Get Started',
     },
     {
       title: 'Thinking About Switching?',
-      icon: '🔁',
-      actions: [
-        'StrataConnect will review your building and provide a proactive, smooth transition—no guesswork required.'
+      description: [
+        'StrataConnect offers full review & support for a smooth transition.',
       ],
-      buttons: ['Request a Quote', 'Book a Call', 'Contact Us']
-    }
+      buttonText: 'Request a Quote',
+    },
   ];
 
   return (
-    <div className="bg-white text-green-900 relative min-h-screen">
-      <header className="absolute top-0 left-0 w-full bg-green-700 py-4 px-6 sm:px-12 flex justify-between items-center shadow-lg z-50">
-        <span className="text-white text-2xl font-bold tracking-wide">StrataConnect</span>
-        <nav className="flex items-center space-x-8 text-white text-lg font-medium">
-          <Link href="/">Home</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/about">About Us</Link>
-          <Link href="/resources">Resources</Link>
-          <Link href="/contact">Contact</Link>
-        </nav>
-      </header>
-
-      {/* Hero */}
+    <div className="bg-white text-green-900 min-h-screen">
+      {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
           src="/images/about-hero.avif"
-          alt="Resources Hero"
+          alt="Resources Page Hero"
           layout="fill"
           objectFit="cover"
           className="z-0"
           priority
         />
-        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pr-10 py-6 rounded-r-xl shadow-lg z-10">
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
           <h2 className="text-white text-3xl font-bold uppercase ml-6">Client Resources</h2>
         </div>
       </div>
 
+      {/* Introduction */}
       <section className="max-w-6xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold text-green-800 mb-2">Everything you need to manage your strata property with ease</h2>
+        <h2 className="text-3xl font-bold text-green-800 mb-2">
+          Everything you need to manage your strata property with ease
+        </h2>
         <p className="text-lg text-black mb-10">
           Whether you're an owner, tenant, committee member or prospective buyer, this is your central hub for access, requests, and support.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
-          {sections.map((sec, idx) => (
-            <div key={idx} className="bg-gray-50 rounded-lg p-6 shadow-md flex flex-col justify-between">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {resources.map((section, index) => (
+            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-md text-left flex flex-col justify-between">
               <div>
-                <h4 className="text-xl font-bold text-green-800 mb-2">{sec.icon} {sec.title}</h4>
-                <ul className="list-disc pl-5 space-y-2 text-black">
-                  {sec.actions.map((act, i) => <li key={i}>{act}</li>)}
-                </ul>
-                {sec.note && <p className="text-sm text-gray-600 mt-2">{sec.note}</p>}
-              </div>
-              {sec.button && <button className="mt-4 mx-auto bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition">{sec.button}</button>}
-              {sec.buttons && (
-                <div className="flex flex-wrap gap-2 mt-4 justify-center">
-                  {sec.buttons.map((btn, i) => (
-                    <button key={i} className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition">{btn}</button>
+                <h4 className="text-xl font-bold text-green-800 mb-4 text-center">{section.title}</h4>
+                <ul className="list-disc list-inside space-y-2 text-black">
+                  {section.description.map((desc, i) => (
+                    <li key={i}>{desc}</li>
                   ))}
-                </div>
-              )}
+                </ul>
+              </div>
+              <div className="text-center mt-6">
+                <button className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition">
+                  {section.buttonText}
+                </button>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA Section */}
       <section className="text-center py-12 bg-green-700 text-white">
         <h2 className="text-3xl font-bold mb-4">Need help or can’t find what you’re looking for?</h2>
         <Link href="/contact">
