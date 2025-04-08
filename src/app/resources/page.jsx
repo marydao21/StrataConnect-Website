@@ -108,13 +108,15 @@ export default function ResourcesPage() {
             actions: ['Take the Strata Health Check'],
             button: 'Get Started'
           }].map((section, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-md flex flex-col justify-between text-center">
+            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-md flex flex-col h-full text-center">
               <div className="mb-4 text-xl font-bold text-green-800">{section.title}</div>
-              <ul className="list-disc pl-5 space-y-2 text-black text-left mb-4">
-                {section.actions.map((action, i) => <li key={i}>{action}</li>)}
-              </ul>
+              <div className="flex-1">
+                <ul className="list-disc pl-5 space-y-2 text-black text-left">
+                  {section.actions.map((action, i) => <li key={i}>{action}</li>)}
+                </ul>
+              </div>
               {section.button && (
-                <div className="flex justify-center">
+                <div className="mt-6 flex justify-center">
                   <button className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition">
                     {section.button}
                   </button>
