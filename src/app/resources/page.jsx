@@ -1,86 +1,8 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ClipboardList, PhoneCall, HeartPulse } from 'lucide-react';
 
 export default function ResourcesPage() {
-  const cards = [
-    {
-      title: '🔐 My Portal',
-      description: [
-        'View and download levy notices',
-        'Access financial statements and meeting minutes',
-        'Track maintenance requests',
-        'Update your contact details',
-        'Receive important notices electronically',
-      ],
-      button: 'Login Now',
-    },
-    {
-      title: '🧾 Manage Your Property Details',
-      description: [
-        'Change Contact Information',
-        'Go Paperless – Choose email delivery for all notices',
-        'Pay My Levies – BPAY, EFT, credit card options',
-      ],
-      button: 'Update Info',
-    },
-    {
-      title: '📥 Submit a Request or Application',
-      description: [
-        'Pet Application Form – Request pet approval',
-        'Renovation Request – Apply for renovation consent',
-        'Keys & Remotes Request – Replacement or new access devices',
-        'Maintenance Request Form – Log an issue in your building',
-      ],
-      button: 'Submit Request',
-    },
-    {
-      title: '🗳️ Proxy Appointment Forms',
-      description: [
-        'Strata Title – General Meeting',
-        'Strata Committee Proxy Form',
-        'Company Title Proxy Form',
-        'Community Association Proxy Form',
-      ],
-      button: 'Download Form',
-    },
-    {
-      title: '📑 Legal & Property Documents',
-      description: [
-        'Request Section 184 Certificate – For sales and conveyancing',
-        'Request Section 174 Certificate – For community associations',
-        'Book a Strata Search – Arrange document access and review',
-      ],
-      button: 'Access Docs',
-    },
-    {
-      title: '🗂️ Useful Downloads & Information',
-      description: [
-        'Download StrataConnect Brochure',
-        'View Legislation & Key Links',
-        'Electronic Voting – Cast your vote online',
-      ],
-      button: 'Download',
-    },
-  ];
-
-  const actions = [
-    {
-      icon: '/icons/quote.svg',
-      title: 'Request a Quote',
-      subtitle: 'Get started today',
-    },
-    {
-      icon: '/icons/call.svg',
-      title: 'Book a Discovery Call',
-      subtitle: 'Book a call with us',
-    },
-    {
-      icon: '/icons/health.svg',
-      title: 'Healthcheck',
-      subtitle: 'Take the StrataConnect healthcheck',
-    },
-  ];
-
   return (
     <div className="bg-white text-green-900 relative min-h-screen">
       {/* Navigation Bar */}
@@ -115,7 +37,7 @@ export default function ResourcesPage() {
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
           src="/images/about-hero.avif"
-          alt="Resources Hero"
+          alt="Resources Page Hero"
           layout="fill"
           objectFit="cover"
           className="z-0"
@@ -127,22 +49,68 @@ export default function ResourcesPage() {
       </div>
 
       {/* Main Content */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-green-800 text-center mb-2">Simplifying strata for owners, residents, and committees</h2>
-        <p className="text-lg text-black text-center mb-10">\          Everything you need to manage your strata property with ease.
+      <section className="max-w-6xl mx-auto px-6 py-16 text-center">
+        <h2 className="text-3xl font-bold text-green-800 mb-2">Everything you need to manage your strata property with ease</h2>
+        <p className="text-lg text-black mb-10">
+          Whether you're an owner, tenant, committee member or prospective buyer, this is your central hub for access, requests, and support.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {cards.map((section, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
+          {[{
+            title: '🔐 My Portal',
+            actions: ['View levy notices & pay online', 'Access financial statements and meeting minutes', 'Track maintenance requests', 'Update your contact details', 'Receive important notices electronically'],
+            button: 'Login Now'
+          }, {
+            title: '🧾 Manage Your Property Details',
+            actions: ['Change Contact Information', 'Go Paperless — Email delivery for all notices', 'Pay My Levies — BPAY, EFT, card']
+          }, {
+            title: '📥 Submit a Request or Application',
+            actions: ['Pet Application — Request pet approval', 'Renovation Request — Apply for renovation consent', 'Keys & Remotes — Replacement or new', 'Maintenance Request — Report an issue']
+          }, {
+            title: '🗳️ Proxy Appointment Forms',
+            actions: ['Strata Title – General Meeting', 'Strata Committee Proxy Form', 'Company Title Proxy Form', 'Community Association Proxy Form'],
+            button: 'Download Form'
+          }, {
+            title: '📑 Legal & Property Documents',
+            actions: ['Request Section 184 Certificate', 'Request Section 174 Certificate', 'Book a Strata Search']
+          }, {
+            title: '🗂️ Useful Downloads & Information',
+            actions: ['Download Brochure', 'View Legislation & Key Links', 'Electronic Voting']
+          }, {
+            title: (
+              <div className="flex flex-col items-center">
+                <ClipboardList className="w-10 h-10 text-green-700 mb-2" />
+                Request a Quote
+              </div>
+            ),
+            actions: ['Get started today'],
+            button: 'Get a Quote'
+          }, {
+            title: (
+              <div className="flex flex-col items-center">
+                <PhoneCall className="w-10 h-10 text-green-700 mb-2" />
+                Book a Discovery Call
+              </div>
+            ),
+            actions: ['Book a call with us'],
+            button: 'Book Now'
+          }, {
+            title: (
+              <div className="flex flex-col items-center">
+                <HeartPulse className="w-10 h-10 text-green-700 mb-2" />
+                Health Check
+              </div>
+            ),
+            actions: ['Take the Strata Health Check'],
+            button: 'Get Started'
+          }].map((section, index) => (
+            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-md flex flex-col justify-between items-center text-center">
               <h4 className="text-xl font-bold text-green-800 mb-4">{section.title}</h4>
-              <ul className="list-disc pl-5 space-y-2 text-black">
-                {section.description.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
+              <ul className="list-disc pl-5 space-y-2 text-black text-left w-full">
+                {section.actions.map((action, i) => <li key={i}>{action}</li>)}
               </ul>
               {section.button && (
-                <button className="mt-4 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition">
+                <button className="mt-6 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition mx-auto">
                   {section.button}
                 </button>
               )}
@@ -151,30 +119,10 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Horizontal Feature Highlights */}
-      <section className="bg-gray-100 py-10">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center px-6">
-          {actions.map((item, idx) => (
-            <div key={idx}>
-              {item.icon && (
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  width={40}
-                  height={40}
-                  className="mx-auto mb-2"
-                />
-              )}
-              <h4 className="font-bold text-lg text-black">{item.title}</h4>
-              <p className="text-gray-600 text-sm">{item.subtitle}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="text-center py-12 bg-green-700 text-white">
-        <h2 className="text-3xl font-bold mb-4">Need help or can’t find what you’re looking for?</h2>
+        <h2 className="text-3xl font-bold mb-4">Ready to simplify your strata management?</h2>
+        <p className="mb-4">Talk to our team today and discover tailored solutions that fit your property needs.</p>
         <Link href="/contact">
           <button className="bg-white text-green-700 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">
             Contact Us
