@@ -36,7 +36,7 @@ export default function ResourcesPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/resources-background.jpg"
+          src="/images/resources-background.png"
           alt="Resources Page Hero"
           layout="fill"
           objectFit="cover"
