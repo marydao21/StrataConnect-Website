@@ -44,7 +44,7 @@ export default function ResourcesPage() {
           priority
         />
         <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
-          <h2 className="text-white text-3xl font-bold uppercase ml-6">Client Resources</h2>
+          <h2 className="text-white text-3xl font-bold uppercase ml-6">Resources</h2>
         </div>
       </div>
 
