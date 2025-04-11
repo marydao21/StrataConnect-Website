@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - StrataConnect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+      color: #1f2937;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 10px;
+      margin-top: 3rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    h1, h2 {
+      color: #047857;
+      text-align: center;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: 1px solid #d1d5db;
+    }
+    button {
+      background-color: #047857;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #065f46;
+    }
+    .section {
+      margin-top: 2rem;
+    }
+    .contact-details {
+      margin-bottom: 2rem;
+    }
+    .two-columns {
+      display: flex;
+      gap: 1rem;
+    }
+    .two-columns input {
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      .two-columns {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📞 Contact Us</h1>
+    <p class="contact-details">We’re here to help.</p>
+    <p>Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we’ll be in touch shortly.</p>
+
+    <div class="section">
+      <h2>📧 Email Us Directly</h2>
+      <p><a href="mailto:info@strataconnect.com.au">info@strataconnect.com.au</a></p>
+    </div>
+
+    <div class="section">
+      <h2>📋 Enquiry Form</h2>
+      <form>
+        <label for="name">Name (required)</label>
+        <div class="two-columns">
+          <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+          <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+        </div>
+
+        <label for="email">Email (required)</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your contact number">
+
+        <label for="message">Message (required)</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your enquiry, request or message..." required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>🕐 Office Hours</h2>
+      <p>Monday – Friday: 9:00 AM – 5:30 PM<br>Closed on weekends and public holidays</p>
+    </div>
+
+    <div class="section">
+      <h2>📍 Office Location</h2>
+      <p>StrataConnect Pty Ltd<br>123 Example Street, Sydney NSW 2000</p>
+    </div>
+  </div>
+</body>
+</html>
