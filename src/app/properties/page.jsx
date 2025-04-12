@@ -26,7 +26,9 @@ export default function RequestQuotePage() {
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-40 text-left">
-        <h2 className="text-3xl font-bold text-green-800 mb-4">📄 Request a Quote</h2>
+        <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">
+        📄 Request a Quote
+        </h2>
         <p className="text-lg mb-10">
           Looking for trusted, proactive strata management? Complete the form below and one of our friendly team members will be in touch shortly with a tailored quote for your property.
         </p>
@@ -86,7 +88,7 @@ export default function RequestQuotePage() {
 
         <section className="mt-12">
           <h4 className="text-xl font-bold text-green-800">📎 Helpful Resources</h4>
-          <p>Explore our <Link href="/resources" className="text-green-700 underline">Client Resources</Link> section for useful forms, guides, and downloads to support your strata needs.</p>
+          <p>Explore our <Link href="/resources" className="text-green-700 underline">Resources</Link> section for useful forms, guides, and downloads to support your strata needs.</p>
         </section>
       </main>
     </div>
