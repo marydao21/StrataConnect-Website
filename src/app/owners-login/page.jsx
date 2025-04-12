@@ -32,7 +32,7 @@ export default function OwnersLoginPage() {
       </header>
 
       <main className="max-w-md mx-auto pt-40 px-6 py-12 text-center">
-        <h2 className="text-2xl font-bold text-green-800 mb-4">🔐 StrataConnect Owner Login</h2>
+        <h2 className="text-2xl font-bold text-green-800 mb-4">StrataConnect Owner Login</h2>
         <p className="text-lg mb-8">Welcome back. Manage your property with ease.</p>
 
         {/* Login Form */}

@@ -33,7 +33,7 @@ export default function PaymentPage() {
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-6 py-32">
-        <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">💳 Pay My Levies</h2>
+        <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">Pay My Levies</h2>
         <p className="text-lg mb-10 text-center">
           Convenient, secure payment options to help you stay on top of your strata fees.
         </p>
