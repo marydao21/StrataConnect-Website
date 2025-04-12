@@ -32,11 +32,11 @@ export default function ContactPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <div className="relative w-full h-[400px] pt-20 overflow-hidden">
+     {/* Hero Section */}
+      <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/contact-background.png"
-          alt="Contact Hero"
+          src="/images/contact-background.png" 
+          alt="Contact Page Hero"
           layout="fill"
           objectFit="cover"
           className="z-0"
