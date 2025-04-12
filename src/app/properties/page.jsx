@@ -26,10 +26,8 @@ export default function RequestQuotePage() {
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-40 text-left">
-        <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">
-        📄 Request a Quote
-        </h2>
-        <p className="text-lg mb-10">
+        <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">Request a Quote</h2>
+        <p className="text-lg mb-10 text-center">
           Looking for trusted, proactive strata management? Complete the form below and one of our friendly team members will be in touch shortly with a tailored quote for your property.
         </p>
 
@@ -42,7 +40,7 @@ export default function RequestQuotePage() {
           <input type="email" name="email" placeholder="Email" required className="p-3 border rounded w-full" />
           <input type="text" name="buildingName" placeholder="Plan or Building Name (if applicable)" className="p-3 border rounded w-full" />
 
-          <input type="text" name="address1" placeholder="Street Address" required className="p-3 border rounded w-full" />
+          <input type="text" name="address" placeholder="Street Address" required className="p-3 border rounded w-full" />
           <input type="text" name="address2" placeholder="Address Line 2" className="p-3 border rounded w-full" />
 
           <div className="grid sm:grid-cols-3 gap-6">
@@ -65,7 +63,7 @@ export default function RequestQuotePage() {
           <div className="grid sm:grid-cols-2 gap-2">
             {['Residential', 'Commercial', 'Mixed Use', 'Retail', 'Industrial', 'Retirement', 'Company Title', 'Community Association'].map((type, index) => (
               <label key={index} className="flex items-center">
-                <input type="checkbox" name="propertyType" value={type} className="mr-2" /> {type}
+                <input type="checkbox" name="propertyTypes" value={type} className="mr-2" /> {type}
               </label>
             ))}
           </div>
