@@ -32,10 +32,10 @@ export default function ContactPage() {
         </div>
       </header>
 
-     {/* Hero Section */}
+      {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/contact-background.png" 
+          src="/images/contact-background.png"
           alt="Contact Page Hero"
           layout="fill"
           objectFit="cover"
@@ -55,8 +55,11 @@ export default function ContactPage() {
           Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we’ll be in touch shortly.
         </p>
 
+        {/* Enquiry Form Heading */}
+        <h3 className="text-2xl font-bold text-green-800 mb-6">📋 Enquiry Form</h3>
+
         {/* Enquiry Form */}
-        <form className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6">
+        <form className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6 text-left">
           <div className="grid sm:grid-cols-2 gap-6">
             <input type="text" placeholder="First Name" required className="p-3 border rounded w-full" />
             <input type="text" placeholder="Last Name" required className="p-3 border rounded w-full" />
@@ -64,9 +67,11 @@ export default function ContactPage() {
           <input type="email" placeholder="Email Address" required className="p-3 border rounded w-full" />
           <input type="tel" placeholder="Phone Number (optional)" className="p-3 border rounded w-full" />
           <textarea placeholder="Your enquiry, request or message..." required rows="5" className="p-3 border rounded w-full"></textarea>
-          <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition">
-            Submit
-          </button>
+          <div className="flex justify-center">
+            <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition">
+              Submit
+            </button>
+          </div>
         </form>
 
         {/* Contact Details */}
@@ -85,9 +90,9 @@ export default function ContactPage() {
             <p className="italic">(Please note this line is for critical building emergencies only.)</p>
           </div>
           <div>
-            <h3 className="text-xl font-bold text-green-800 mb-2">📮 Postal Address</h3>
+            <h3 className="text-xl font-bold text-green-800 mb-2">🏢 Office Location</h3>
             <p>StrataConnect Pty Ltd</p>
-            <p>PO Box 1234, Sydney NSW 2000</p>
+            <p>123 Pitt Street, Sydney NSW 2000</p>
           </div>
         </section>
       </main>
