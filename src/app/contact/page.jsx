@@ -35,7 +35,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[400px] pt-20 overflow-hidden">
         <Image
-          src="/images/contact-hero.jpg"
+          src="/images/contact-background.png"
           alt="Contact Hero"
           layout="fill"
           objectFit="cover"
