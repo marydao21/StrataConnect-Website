@@ -1,93 +1,93 @@
-// import Link from 'next/link';
+import Link from 'next/link';
 
-// export default function OwnersLoginPage() {
-//   return (
-//     <div className="bg-white text-green-900 relative min-h-screen">
-//       {/* Navigation Bar */}
-//       <header className="absolute top-0 left-0 w-full bg-green-700 py-4 px-6 sm:px-12 flex justify-between items-center shadow-lg z-50">
-//         <span className="text-white text-2xl font-bold tracking-wide">
-//           StrataConnect
-//         </span>
-//         <div className="flex items-center space-x-12">
-//           <nav className="flex space-x-8 text-white text-lg font-medium">
-//             <Link href="/" className="hover:underline">Home</Link>
-//             <Link href="/services" className="hover:underline">Services</Link>
-//             <Link href="/about" className="hover:underline">About Us</Link>
-//             <Link href="/resources" className="hover:underline">Resources</Link>
-//             <Link href="/contact" className="hover:underline">Contact</Link>
-//           </nav>
-//           <div className="flex space-x-4">
-//             <Link href="/owners-login">
-//               <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
-//                 OWNERS LOGIN
-//               </button>
-//             </Link>
-//             <Link href="/payment">
-//               <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
-//                 PAY MY LEVIES
-//               </button>
-//             </Link>
-//           </div>
-//         </div>
-//       </header>
+export default function OwnersLoginPage() {
+  return (
+    <div className="bg-white text-green-900 relative min-h-screen">
+      {/* Navigation Bar */}
+      <header className="absolute top-0 left-0 w-full bg-green-700 py-4 px-6 sm:px-12 flex justify-between items-center shadow-lg z-50">
+        <span className="text-white text-2xl font-bold tracking-wide">
+          StrataConnect
+        </span>
+        <div className="flex items-center space-x-12">
+          <nav className="flex space-x-8 text-white text-lg font-medium">
+            <Link href="/" className="hover:underline">Home</Link>
+            <Link href="/services" className="hover:underline">Services</Link>
+            <Link href="/about" className="hover:underline">About Us</Link>
+            <Link href="/resources" className="hover:underline">Resources</Link>
+            <Link href="/contact" className="hover:underline">Contact</Link>
+          </nav>
+          <div className="flex space-x-4">
+            <Link href="/owners-login">
+              <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
+                OWNERS LOGIN
+              </button>
+            </Link>
+            <Link href="/payment">
+              <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
+                PAY MY LEVIES
+              </button>
+            </Link>
+          </div>
+        </div>
+      </header>
 
-//       <main className="max-w-md mx-auto pt-40 px-6 py-12 text-center">
-//         <h2 className="text-2xl font-bold text-green-800 mb-4">StrataConnect Owner Login</h2>
-//         <p className="text-lg mb-8">Welcome back. Manage your property with ease.</p>
+      <main className="max-w-md mx-auto pt-40 px-6 py-12 text-center">
+        <h2 className="text-2xl font-bold text-green-800 mb-4">StrataConnect Owner Login</h2>
+        <p className="text-lg mb-8">Welcome back. Manage your property with ease.</p>
 
-//         {/* Login Form */}
-//         <form className="bg-gray-50 p-8 rounded-lg shadow space-y-6">
-//           <div>
-//             <label className="block mb-2 text-left font-semibold">Email Address</label>
-//             <input type="email" placeholder="Enter your email" className="p-3 border rounded w-full" />
-//           </div>
-//           <div>
-//             <label className="block mb-2 text-left font-semibold">Password</label>
-//             <input type="password" placeholder="Enter your password" className="p-3 border rounded w-full" />
-//           </div>
-//           <div className="flex justify-between items-center text-sm text-gray-700">
-//             <label>
-//               <input type="checkbox" className="mr-2" /> Remember me
-//             </label>
-//             <Link href="#" className="text-green-700 hover:underline">Forgot password?</Link>
-//           </div>
-//           <button type="submit" className="w-full bg-green-700 text-white py-3 rounded font-bold hover:bg-green-800 transition">
-//             Login
-//           </button>
-//         </form>
+        {/* Login Form */}
+        <form className="bg-gray-50 p-8 rounded-lg shadow space-y-6">
+          <div>
+            <label className="block mb-2 text-left font-semibold">Email Address</label>
+            <input type="email" placeholder="Enter your email" className="p-3 border rounded w-full" />
+          </div>
+          <div>
+            <label className="block mb-2 text-left font-semibold">Password</label>
+            <input type="password" placeholder="Enter your password" className="p-3 border rounded w-full" />
+          </div>
+          <div className="flex justify-between items-center text-sm text-gray-700">
+            <label>
+              <input type="checkbox" className="mr-2" /> Remember me
+            </label>
+            <Link href="#" className="text-green-700 hover:underline">Forgot password?</Link>
+          </div>
+          <button type="submit" className="w-full bg-green-700 text-white py-3 rounded font-bold hover:bg-green-800 transition">
+            Login
+          </button>
+        </form>
 
-//         {/* New Users Section */}
-//         <div className="mt-10 text-left text-sm text-gray-800">
-//           <h3 className="text-base font-bold mb-4">💡 New to StrataConnect?</h3>
+        {/* New Users Section */}
+        <div className="mt-10 text-left text-sm text-gray-800">
+          <h3 className="text-base font-bold mb-4">💡 New to StrataConnect?</h3>
 
-//           <div className="space-y-4">
-//             <div>
-//               <p className="mb-2">Don’t have an account?</p>
-//               <Link href="/signup">
-//                 <button className="w-full bg-green-700 text-white py-2 rounded font-bold hover:bg-green-800 transition">
-//                   Sign Up
-//                 </button>
-//               </Link>
-//             </div>
+          <div className="space-y-4">
+            <div>
+              <p className="mb-2">Don’t have an account?</p>
+              <Link href="/signup">
+                <button className="w-full bg-green-700 text-white py-2 rounded font-bold hover:bg-green-800 transition">
+                  Sign Up
+                </button>
+              </Link>
+            </div>
 
-//             <div>
-//               <p className="mb-2">Are you a contractor or service provider?</p>
-//               <Link href="/service-provider-signup">
-//                 <button className="w-full bg-green-700 text-white py-2 rounded font-bold hover:bg-green-800 transition">
-//                   Sign up as a Service Provider
-//                 </button>
-//               </Link>
-//             </div>
+            <div>
+              <p className="mb-2">Are you a contractor or service provider?</p>
+              <Link href="/service-provider-signup">
+                <button className="w-full bg-green-700 text-white py-2 rounded font-bold hover:bg-green-800 transition">
+                  Sign up as a Service Provider
+                </button>
+              </Link>
+            </div>
 
-//             <p className="pt-4">
-//               Need help accessing your portal? Contact us at{' '}
-//               <a href="mailto:info@strataconnect.com.au" className="text-green-700 font-semibold hover:underline">
-//                 info@strataconnect.com.au
-//               </a>
-//             </p>
-//           </div>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// }
+            <p className="pt-4">
+              Need help accessing your portal? Contact us at{' '}
+              <a href="mailto:info@strataconnect.com.au" className="text-green-700 font-semibold hover:underline">
+                info@strataconnect.com.au
+              </a>
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
