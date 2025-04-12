@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ContactPage() {
@@ -31,34 +32,45 @@ export default function ContactPage() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 pt-40 pb-20">
-        <section className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-green-800 mb-4">📞 Contact Us</h2>
-          <p className="text-lg mb-2">We’re here to help.</p>
-          <p className="text-lg text-black">
-            Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we’ll be in touch shortly.
-          </p>
-        </section>
+      {/* Hero Section */}
+      <div className="relative w-full h-[400px] pt-20 overflow-hidden">
+        <Image
+          src="/images/contact-hero.jpg"
+          alt="Contact Hero"
+          layout="fill"
+          objectFit="cover"
+          className="z-0"
+          priority
+        />
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
+          <h2 className="text-white text-3xl font-bold uppercase ml-6">Contact Us</h2>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className="max-w-4xl mx-auto px-6 py-16 text-center">
+        <h2 className="text-3xl font-bold text-green-800 mb-4">📞 Contact Us</h2>
+        <p className="text-lg text-black mb-10">
+          We’re here to help.<br />
+          Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we’ll be in touch shortly.
+        </p>
 
         {/* Enquiry Form */}
-        <section className="bg-gray-100 p-6 rounded-lg shadow-md mb-10">
-          <h3 className="text-xl font-bold text-green-800 mb-4">📋 Enquiry Form</h3>
-          <form className="space-y-4">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input type="text" placeholder="First Name" required className="flex-1 p-3 rounded border border-gray-300" />
-              <input type="text" placeholder="Last Name" required className="flex-1 p-3 rounded border border-gray-300" />
-            </div>
-            <input type="email" placeholder="Enter your email address" required className="w-full p-3 rounded border border-gray-300" />
-            <input type="text" placeholder="Enter your contact number (optional)" className="w-full p-3 rounded border border-gray-300" />
-            <textarea placeholder="Your enquiry, request or message..." required className="w-full p-3 h-32 rounded border border-gray-300"></textarea>
-            <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded hover:bg-green-800 transition">
-              Submit
-            </button>
-          </form>
-        </section>
+        <form className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6">
+          <div className="grid sm:grid-cols-2 gap-6">
+            <input type="text" placeholder="First Name" required className="p-3 border rounded w-full" />
+            <input type="text" placeholder="Last Name" required className="p-3 border rounded w-full" />
+          </div>
+          <input type="email" placeholder="Email Address" required className="p-3 border rounded w-full" />
+          <input type="tel" placeholder="Phone Number (optional)" className="p-3 border rounded w-full" />
+          <textarea placeholder="Your enquiry, request or message..." required rows="5" className="p-3 border rounded w-full"></textarea>
+          <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition">
+            Submit
+          </button>
+        </form>
 
-        {/* Contact Information */}
-        <section className="text-left text-black space-y-6">
+        {/* Contact Details */}
+        <section className="text-left mt-16 space-y-6 text-lg text-black">
           <div>
             <h3 className="text-xl font-bold text-green-800 mb-2">📬 General Enquiries</h3>
             <p>Email: info@strataconnect.com.au</p>
@@ -70,7 +82,7 @@ export default function ContactPage() {
           <div>
             <h3 className="text-xl font-bold text-green-800 mb-2">🚨 After-Hours Emergency</h3>
             <p>Emergency Line: 02 9000 2222</p>
-            <p className="text-sm italic">(Please note this line is for critical building emergencies only.)</p>
+            <p className="italic">(Please note this line is for critical building emergencies only.)</p>
           </div>
           <div>
             <h3 className="text-xl font-bold text-green-800 mb-2">📮 Postal Address</h3>
