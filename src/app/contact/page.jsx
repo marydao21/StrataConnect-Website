@@ -59,14 +59,18 @@ export default function ContactPage() {
         <h3 className="text-2xl font-bold text-green-800 mb-6">📋 Enquiry Form</h3>
 
         {/* Enquiry Form */}
-        <form className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6 text-left">
+        <form 
+          method="POST" 
+          action="/api/contact-form" 
+          className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6 text-left"
+        >
           <div className="grid sm:grid-cols-2 gap-6">
-            <input type="text" placeholder="First Name" required className="p-3 border rounded w-full" />
-            <input type="text" placeholder="Last Name" required className="p-3 border rounded w-full" />
+            <input name="firstName" type="text" placeholder="First Name" required className="p-3 border rounded w-full" />
+            <input name="lastName" type="text" placeholder="Last Name" required className="p-3 border rounded w-full" />
           </div>
-          <input type="email" placeholder="Email Address" required className="p-3 border rounded w-full" />
-          <input type="tel" placeholder="Phone Number (optional)" className="p-3 border rounded w-full" />
-          <textarea placeholder="Your enquiry, request or message..." required rows="5" className="p-3 border rounded w-full"></textarea>
+          <input name="email" type="email" placeholder="Email Address" required className="p-3 border rounded w-full" />
+          <input name="phone" type="tel" placeholder="Phone Number (optional)" className="p-3 border rounded w-full" />
+          <textarea name="message" placeholder="Your enquiry, request or message..." required rows="5" className="p-3 border rounded w-full"></textarea>
           <div className="flex justify-center">
             <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition">
               Submit
