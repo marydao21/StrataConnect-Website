@@ -52,7 +52,7 @@ export default function ResourcesPage() {
       <section className="max-w-6xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold text-green-800 mb-2">Everything you need to manage your strata property with ease</h2>
         <p className="text-lg text-black mb-10">
-          Whether you're an owner, tenant, committee member or prospective buyer, this is your central hub for access, requests, and support.
+          Whether you are an owner, tenant, committee member or prospective buyer, this is your central hub for access, requests, and support.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">

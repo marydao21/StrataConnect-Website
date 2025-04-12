@@ -47,58 +47,48 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Contact Section */}
+      {/* Contact Info Section */}
       <section className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold text-green-800 mb-6">📞 Contact Us</h2>
-        <p className="text-lg text-black mb-6">
-          Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we’ll be in touch shortly.
-        </p>
+        <h2 className="text-3xl font-bold text-green-800 mb-6">📬 General Enquiries</h2>
+        <p className="text-lg text-black mb-2">Email: info@strataconnect.com.au</p>
+        <p className="text-lg text-black mb-2">Phone: 1300 123 456</p>
+        <p className="text-lg text-black mb-2">Fax: 02 9000 1111</p>
+        <p className="text-lg text-black mb-2">Business Hours: Monday to Friday, 9:00 AM – 5:30 PM</p>
+        <p className="text-lg text-black mb-6">ABN: 12 345 678 910</p>
 
-        {/* Email Info */}
-        <div className="mb-10">
-          <h3 className="text-xl font-semibold text-green-800">📧 Email Us Directly</h3>
-          <p className="text-lg text-black">info@strataconnect.com.au</p>
-        </div>
+        <h2 className="text-2xl font-bold text-green-800 mb-4">🚨 After-Hours Emergency</h2>
+        <p className="text-lg text-black mb-2">Emergency Line: 02 9000 2222</p>
+        <p className="text-sm italic text-gray-700 mb-6">(Please note this line is for critical building emergencies only.)</p>
 
-        {/* Contact Form */}
-        <form className="space-y-6 text-left max-w-2xl mx-auto">
+        <h2 className="text-2xl font-bold text-green-800 mb-4">📮 Postal Address</h2>
+        <p className="text-lg text-black mb-2">StrataConnect Pty Ltd</p>
+        <p className="text-lg text-black mb-10">PO Box 1234, Sydney NSW 2000</p>
+
+        {/* Enquiry Form */}
+        <h3 className="text-2xl font-bold text-green-800 mb-6">📋 Enquiry Form</h3>
+        <form className="space-y-6 text-left">
           <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block mb-1 text-sm font-semibold">First Name</label>
-              <input type="text" className="w-full border border-gray-300 rounded p-2" required />
-            </div>
-            <div className="flex-1">
-              <label className="block mb-1 text-sm font-semibold">Last Name</label>
-              <input type="text" className="w-full border border-gray-300 rounded p-2" required />
-            </div>
+            <input className="w-full border rounded p-3" type="text" placeholder="First Name" required />
+            <input className="w-full border rounded p-3" type="text" placeholder="Last Name" required />
           </div>
-          <div>
-            <label className="block mb-1 text-sm font-semibold">Email</label>
-            <input type="email" className="w-full border border-gray-300 rounded p-2" required />
-          </div>
-          <div>
-            <label className="block mb-1 text-sm font-semibold">Phone</label>
-            <input type="tel" className="w-full border border-gray-300 rounded p-2" />
-          </div>
-          <div>
-            <label className="block mb-1 text-sm font-semibold">Message</label>
-            <textarea rows="5" className="w-full border border-gray-300 rounded p-2" required placeholder="Your enquiry, request or message..."></textarea>
-          </div>
-          <button type="submit" className="bg-green-700 text-white font-bold px-6 py-3 rounded hover:bg-green-800 transition mx-auto block">
+          <input className="w-full border rounded p-3" type="email" placeholder="Enter your email address" required />
+          <input className="w-full border rounded p-3" type="tel" placeholder="Enter your contact number (optional)" />
+          <textarea className="w-full border rounded p-3" rows="5" placeholder="Your enquiry, request or message..." required></textarea>
+          <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded hover:bg-green-800 transition">
             Submit
           </button>
         </form>
+      </section>
 
-        {/* Office Info */}
-        <div className="mt-12 text-left">
-          <h3 className="text-xl font-semibold text-green-800 mb-2">🕐 Office Hours</h3>
-          <p className="text-black">Monday – Friday: 9:00 AM – 5:30 PM</p>
-          <p className="text-black">Closed on weekends and public holidays</p>
-
-          <h3 className="text-xl font-semibold text-green-800 mt-6 mb-2">📍 Office Location</h3>
-          <p className="text-black">StrataConnect Pty Ltd</p>
-          <p className="text-black">123 Pitt Street, Sydney NSW 2000</p>
-        </div>
+      {/* CTA Section */}
+      <section className="text-center py-12 bg-green-700 text-white">
+        <h2 className="text-3xl font-bold mb-4">We’re ready to support your strata needs.</h2>
+        <p className="mb-4">Reach out anytime—we’re here to help make your strata journey easier.</p>
+        <Link href="/">
+          <button className="bg-white text-green-700 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">
+            Back to Home
+          </button>
+        </Link>
       </section>
     </div>
   );
