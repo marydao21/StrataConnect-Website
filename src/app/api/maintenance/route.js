@@ -1,24 +1,21 @@
-// /app/api/maintenance/route.js
-
 import { NextResponse } from 'next/server';
 
-// Configuration for Edge Runtime
 export const config = {
-  runtime: 'edge', // Ensures this runs as an Edge Function
+  runtime: 'edge',
 };
 
-// The GET function to return maintenance issues
 export async function GET() {
-  const requests = [
-    { id: 1, issue: "Leaking roof", status: "Pending" },
-    { id: 2, issue: "Broken elevator", status: "In Progress" },
-    { id: 3, issue: "Parking gate malfunction", status: "Resolved" },
+  const issues = [
+    { id: 1, item: "Elevator Repair", status: "In Progress" },
+    { id: 2, item: "Garage Door", status: "Resolved" },
+    { id: 3, item: "Water Leak", status: "Pending" },
   ];
 
-  // Log the request to the Vercel logs
-  console.log('Received request for /api/maintenance');
-  console.log('Returning maintenance data:', JSON.stringify(requests, null, 2)); // Pretty-print the JSON
-
-  // Returning JSON response
-  return NextResponse.json(requests);
+  return new NextResponse(JSON.stringify({ updatedAt: new Date().toISOString(), issues }), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
+    },
+  });
 }
