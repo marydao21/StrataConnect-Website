@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function LoginSuccessClient() {
+export default function client() {
   const params = useSearchParams();
   const email = params.get('email') || 'your account';
 
