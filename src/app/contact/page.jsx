@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ContactPage() {
@@ -32,64 +31,54 @@ export default function ContactPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <div className="relative w-full h-[400px] pt-20 overflow-hidden">
-        <Image
-          src="/images/about-hero.avif"
-          alt="Contact Hero"
-          layout="fill"
-          objectFit="cover"
-          className="z-0"
-          priority
-        />
-        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
-          <h2 className="text-white text-3xl font-bold uppercase ml-6">Contact Us</h2>
-        </div>
-      </div>
-
-      {/* Contact Info Section */}
-      <section className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold text-green-800 mb-6">📬 General Enquiries</h2>
-        <p className="text-lg text-black mb-2">Email: info@strataconnect.com.au</p>
-        <p className="text-lg text-black mb-2">Phone: 1300 123 456</p>
-        <p className="text-lg text-black mb-2">Fax: 02 9000 1111</p>
-        <p className="text-lg text-black mb-2">Business Hours: Monday to Friday, 9:00 AM – 5:30 PM</p>
-        <p className="text-lg text-black mb-6">ABN: 12 345 678 910</p>
-
-        <h2 className="text-2xl font-bold text-green-800 mb-4">🚨 After-Hours Emergency</h2>
-        <p className="text-lg text-black mb-2">Emergency Line: 02 9000 2222</p>
-        <p className="text-sm italic text-gray-700 mb-6">(Please note this line is for critical building emergencies only.)</p>
-
-        <h2 className="text-2xl font-bold text-green-800 mb-4">📮 Postal Address</h2>
-        <p className="text-lg text-black mb-2">StrataConnect Pty Ltd</p>
-        <p className="text-lg text-black mb-10">PO Box 1234, Sydney NSW 2000</p>
+      <main className="max-w-4xl mx-auto px-6 pt-40 pb-20">
+        <section className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-green-800 mb-4">📞 Contact Us</h2>
+          <p className="text-lg mb-2">We’re here to help.</p>
+          <p className="text-lg text-black">
+            Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we’ll be in touch shortly.
+          </p>
+        </section>
 
         {/* Enquiry Form */}
-        <h3 className="text-2xl font-bold text-green-800 mb-6">📋 Enquiry Form</h3>
-        <form className="space-y-6 text-left">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <input className="w-full border rounded p-3" type="text" placeholder="First Name" required />
-            <input className="w-full border rounded p-3" type="text" placeholder="Last Name" required />
-          </div>
-          <input className="w-full border rounded p-3" type="email" placeholder="Enter your email address" required />
-          <input className="w-full border rounded p-3" type="tel" placeholder="Enter your contact number (optional)" />
-          <textarea className="w-full border rounded p-3" rows="5" placeholder="Your enquiry, request or message..." required></textarea>
-          <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded hover:bg-green-800 transition">
-            Submit
-          </button>
-        </form>
-      </section>
+        <section className="bg-gray-100 p-6 rounded-lg shadow-md mb-10">
+          <h3 className="text-xl font-bold text-green-800 mb-4">📋 Enquiry Form</h3>
+          <form className="space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input type="text" placeholder="First Name" required className="flex-1 p-3 rounded border border-gray-300" />
+              <input type="text" placeholder="Last Name" required className="flex-1 p-3 rounded border border-gray-300" />
+            </div>
+            <input type="email" placeholder="Enter your email address" required className="w-full p-3 rounded border border-gray-300" />
+            <input type="text" placeholder="Enter your contact number (optional)" className="w-full p-3 rounded border border-gray-300" />
+            <textarea placeholder="Your enquiry, request or message..." required className="w-full p-3 h-32 rounded border border-gray-300"></textarea>
+            <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded hover:bg-green-800 transition">
+              Submit
+            </button>
+          </form>
+        </section>
 
-      {/* CTA Section */}
-      <section className="text-center py-12 bg-green-700 text-white">
-        <h2 className="text-3xl font-bold mb-4">We’re ready to support your strata needs.</h2>
-        <p className="mb-4">Reach out anytime—we’re here to help make your strata journey easier.</p>
-        <Link href="/">
-          <button className="bg-white text-green-700 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">
-            Back to Home
-          </button>
-        </Link>
-      </section>
+        {/* Contact Information */}
+        <section className="text-left text-black space-y-6">
+          <div>
+            <h3 className="text-xl font-bold text-green-800 mb-2">📬 General Enquiries</h3>
+            <p>Email: info@strataconnect.com.au</p>
+            <p>Phone: 1300 123 456</p>
+            <p>Fax: 02 9000 1111</p>
+            <p>Business Hours: Monday to Friday, 9:00 AM – 5:30 PM</p>
+            <p>ABN: 12 345 678 910</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-green-800 mb-2">🚨 After-Hours Emergency</h3>
+            <p>Emergency Line: 02 9000 2222</p>
+            <p className="text-sm italic">(Please note this line is for critical building emergencies only.)</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-green-800 mb-2">📮 Postal Address</h3>
+            <p>StrataConnect Pty Ltd</p>
+            <p>PO Box 1234, Sydney NSW 2000</p>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
