@@ -56,31 +56,36 @@ export default function OwnersLoginPage() {
           </button>
         </form>
 
-        {/* Help Section */}
+        {/* New Users Section */}
         <div className="mt-10 text-left text-sm text-gray-800">
-          <h3 className="text-base font-bold mb-2">💡 New to StrataConnect?</h3>
-          <ul className="space-y-3">
-            <li>
-              If you're a contractor or service provider:{' '}
-              <Link href="#" className="text-green-700 font-semibold hover:underline">Sign up as a Service Provider</Link>
-            </li>
-            <li>
-              Don't have an account?
-              <div className="mt-2">
-                <Link href="/signup">
-                  <button className="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 font-bold transition">
-                    Sign Up
-                  </button>
-                </Link>
-              </div>
-            </li>
-            <li>
+          <h3 className="text-base font-bold mb-4">💡 New to StrataConnect?</h3>
+
+          <div className="space-y-4">
+            <div>
+              <p className="mb-2">Don’t have an account?</p>
+              <Link href="/signup">
+                <button className="w-full bg-green-700 text-white py-2 rounded font-bold hover:bg-green-800 transition">
+                  Sign Up
+                </button>
+              </Link>
+            </div>
+
+            <div>
+              <p className="mb-2">Are you a contractor or service provider?</p>
+              <Link href="/service-provider-signup">
+                <button className="w-full bg-green-700 text-white py-2 rounded font-bold hover:bg-green-800 transition">
+                  Sign up as a Service Provider
+                </button>
+              </Link>
+            </div>
+
+            <p className="pt-4">
               Need help accessing your portal? Contact us at{' '}
               <a href="mailto:info@strataconnect.com.au" className="text-green-700 font-semibold hover:underline">
                 info@strataconnect.com.au
               </a>
-            </li>
-          </ul>
+            </p>
+          </div>
         </div>
       </main>
     </div>
