@@ -42,22 +42,22 @@ export default function PaymentPage() {
           <div>
             <h3 className="text-2xl font-bold text-green-800 mb-4">🔗 Option 1: Pay Online via StrataConnect</h3>
             <p className="mb-4">You can pay your levies directly through our secure online form using a credit or debit card.</p>
-            <form action="/payment.php" method="POST" className="bg-gray-50 p-6 rounded shadow-md space-y-4">
-                <input type="text" name="reference" placeholder="Reference Number" required className="w-full border p-3 rounded" />
-                <input type="text" name="cardNumber" placeholder="Credit Card Number" required className="w-full border p-3 rounded" />
-                <input type="text" name="cardName" placeholder="Name on Card" required className="w-full border p-3 rounded" />
-                <div className="flex gap-4">
-                  <input type="text" name="month" placeholder="Month" required className="w-1/2 border p-3 rounded" />
-                  <input type="text" name="year" placeholder="Year" required className="w-1/2 border p-3 rounded" />
-                </div>
-                <input type="text" name="cvv" placeholder="CVV" required className="w-full border p-3 rounded" />
-                <input type="text" name="amount" placeholder="Payment Amount" required className="w-full border p-3 rounded" />
-                <div className="flex justify-between gap-4">
-                  <button type="reset" className="bg-gray-200 px-6 py-2 rounded">Clear</button>
-                  <button type="submit" className="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Submit Payment</button>
-                </div>
-          </form>
-
+            <form className="bg-gray-50 p-6 rounded shadow-md space-y-4">
+              <input type="text" placeholder="Reference Number" className="w-full border p-3 rounded" />
+              <input type="text" placeholder="Credit Card Number" className="w-full border p-3 rounded" />
+              <input type="text" placeholder="Name on Card" className="w-full border p-3 rounded" />
+              <div className="flex gap-4">
+                <input type="text" placeholder="Month" className="w-1/2 border p-3 rounded" />
+                <input type="text" placeholder="Year" className="w-1/2 border p-3 rounded" />
+              </div>
+              <input type="text" placeholder="CVV" className="w-full border p-3 rounded" />
+              <input type="text" placeholder="Payment Amount" className="w-full border p-3 rounded" />
+              <div className="flex justify-between gap-4">
+                <button className="bg-gray-200 px-6 py-2 rounded">Clear</button>
+                <button type="submit" className="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Submit Payment</button>
+              </div>
+              <p className="text-sm mt-4">Accepted cards: 💳 Visa 💳 MasterCard 💳 American Express 💳 Diners</p>
+            </form>
           </div>
 
           <div>

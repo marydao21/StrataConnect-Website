@@ -63,7 +63,7 @@ export default function ResourcesPage() {
           }, {
             title: '🧾 Manage Your Property Details',
             actions: ['Change Contact Information', 'Go Paperless — Email delivery for all notices', 'Pay My Levies — BPAY, EFT, card'],
-            button: 'Update Info'
+            button: <a href="/api/update-info.php" className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition inline-block">Update Info</a>
           }, {
             title: '📥 Submit a Request or Application',
             actions: ['Pet Application — Request pet approval', 'Renovation Request — Apply for renovation consent', 'Keys & Remotes — Replacement or new', 'Maintenance Request — Report an issue'],
