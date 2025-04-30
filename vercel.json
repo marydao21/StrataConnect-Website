@@ -1,22 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
   "regions": ["syd1"],
+  "buildCommand": "next build",
   "crons": [
     {
       "path": "/api/cron",
       "schedule": "0 1 * * *"
     }
   ],
-  "buildCommand": "next build",
   "functions": {
-    "api/quote/index.php": {
-      "runtime": "vercel-php@0.7.1"
+    "src/app/api/payment.php": {
+      "runtime": "vercel-php@0.5.0"
     }
-  },
-  "routes": [
-    {
-      "src": "/api/quote",
-      "dest": "/api/quote/index.php"
-    }
-  ]
+  }
 }
