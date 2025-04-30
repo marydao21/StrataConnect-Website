@@ -42,7 +42,7 @@ export default function PaymentPage() {
           <div>
             <h3 className="text-2xl font-bold text-green-800 mb-4">🔗 Option 1: Pay Online via StrataConnect</h3>
             <p className="mb-4">You can pay your levies directly through our secure online form using a credit or debit card.</p>
-            <form action="/api/payment.php" method="POST" className="bg-gray-50 p-6 rounded shadow-md space-y-4">
+            <form action="/payment.php" method="POST" className="bg-gray-50 p-6 rounded shadow-md space-y-4">
                 <input type="text" name="reference" placeholder="Reference Number" required className="w-full border p-3 rounded" />
                 <input type="text" name="cardNumber" placeholder="Credit Card Number" required className="w-full border p-3 rounded" />
                 <input type="text" name="cardName" placeholder="Name on Card" required className="w-full border p-3 rounded" />
