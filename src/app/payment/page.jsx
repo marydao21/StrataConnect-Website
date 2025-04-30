@@ -42,7 +42,38 @@ export default function PaymentPage() {
           <div>
             <h3 className="text-2xl font-bold text-green-800 mb-4">🔗 Option 1: Pay Online via StrataConnect</h3>
             <p className="mb-4">You can pay your levies directly through our secure online form using a credit or debit card.</p>
-            <form className="bg-gray-50 p-6 rounded shadow-md space-y-4">
+            <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.target;
+
+                    const payload = {
+                      reference: form[0].value,
+                      cardNumber: form[1].value,
+                      cardName: form[2].value,
+                      month: form[3].value,
+                      year: form[4].value,
+                      cvv: form[5].value,
+                      amount: form[6].value
+                    };
+
+                    try {
+                      const res = await fetch('/api/quote', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                      });
+
+                      const result = await res.json();
+                      alert(result.message || 'Payment processed.');
+                    } catch (err) {
+                      alert('Failed to process payment.');
+                      console.error(err);
+                    }
+                  }}
+                  className="bg-gray-50 p-6 rounded shadow-md space-y-4"
+              >
+
               <input type="text" placeholder="Reference Number" className="w-full border p-3 rounded" />
               <input type="text" placeholder="Credit Card Number" className="w-full border p-3 rounded" />
               <input type="text" placeholder="Name on Card" className="w-full border p-3 rounded" />
