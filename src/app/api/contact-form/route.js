@@ -30,14 +30,21 @@ export async function POST(req) {
       });
     }
 
-    // Generate a unique ID for this contact message
-    const contactId = crypto.randomUUID();
+    // Get the next sequential ID
+    const { data: maxIdData, error: maxIdError } = await supabaseAdmin
+      .from('Contacts')
+      .select('id')
+      .order('id', { ascending: false })
+      .limit(1)
+      .single();
 
-    // Insert the contact form data with a new unique ID
+    const nextId = maxIdData ? maxIdData.id + 1 : 1;
+
+    // Insert the contact form data with the next sequential ID
     const { error } = await supabaseAdmin
       .from('Contacts')
       .insert([{
-        id: contactId,
+        id: nextId,
         user_id: userData.id, // Store the user's ID as a foreign key
         first_name: firstName,
         last_name: lastName,
