@@ -49,11 +49,15 @@ export async function POST(req) {
       });
     }
 
-    // Insert the request data with the user's ID
+    // Generate a unique ID for this request
+    const requestId = crypto.randomUUID();
+
+    // Insert the request data with a new unique ID
     const { error } = await supabaseAdmin
       .from('Request_Info')
       .insert([{
-        id: userData.id,
+        id: requestId,
+        user_id: userData.id, // Store the user's ID as a foreign key
         first_name: firstName,
         last_name: lastName,
         phone,

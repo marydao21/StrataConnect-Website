@@ -30,11 +30,15 @@ export async function POST(req) {
       });
     }
 
-    // Insert the contact form data with the user's ID
+    // Generate a unique ID for this contact message
+    const contactId = crypto.randomUUID();
+
+    // Insert the contact form data with a new unique ID
     const { error } = await supabaseAdmin
       .from('Contacts')
       .insert([{
-        id: userData.id,
+        id: contactId,
+        user_id: userData.id, // Store the user's ID as a foreign key
         first_name: firstName,
         last_name: lastName,
         email,
