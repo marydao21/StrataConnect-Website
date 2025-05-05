@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { serialize } from 'cookie';
 
 const supabaseAdmin = createClient(
   process.env.SUPABASE_URL,
@@ -12,7 +13,7 @@ export async function POST(req) {
     // Check if the user exists in Owners_Login
     const { data: user, error } = await supabaseAdmin
       .from('Owners_Login')
-      .select('id, password')
+      .select('id, password, email')
       .eq('email', email)
       .single();
 
@@ -37,13 +38,33 @@ export async function POST(req) {
     }
 
     // ✅ Login successful
+    // Set cookies with the user ID and email
+    const userIdCookie = serialize('user_id', user.id, {
+      httpOnly: true,
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+    });
+    const userEmailCookie = serialize('user_email', user.email, {
+      httpOnly: true,
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+    });
+
     return new Response(JSON.stringify({ 
       success: true,
       userId: user.id,
+      userEmail: user.email,
       redirect: '/login-success'
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 
+        'Content-Type': 'application/json',
+        'Set-Cookie': [userIdCookie, userEmailCookie],
+      }
     });
   } catch (err) {
     console.error('Login error:', err);

@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { serialize } from 'cookie';
 
 // Create a Supabase client with the service role key for database operations
 const supabaseAdmin = createClient(
@@ -61,7 +62,27 @@ export async function POST(req) {
       });
     }
 
-    return Response.redirect("https://strata-connect-green.vercel.app/thank-you", 302);
+    // Set cookies for contact_name, contact_email, and contact_phone
+    const nameCookie = serialize('contact_name', `${firstName} ${lastName}`, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+    });
+    const emailCookie = serialize('contact_email', email, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30,
+    });
+    const phoneCookie = serialize('contact_phone', phone, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30,
+    });
+
+    return new Response(null, {
+      status: 302,
+      headers: {
+        'Location': 'https://strata-connect-green.vercel.app/thank-you',
+        'Set-Cookie': [nameCookie, emailCookie, phoneCookie],
+      },
+    });
   } catch (err) {
     console.error("❌ Unexpected Error:", err);
     return new Response("Server error", { status: 500 });
