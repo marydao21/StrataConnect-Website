@@ -15,9 +15,6 @@
     }
   },
   "routes": [
-    {
-      "src": "/api/update-info.php",
-      "dest": "/api/update-info.php"
-    }
+    { "src": "/api/update-info.php", "dest": "/api/update-info.php" }
   ]
 }
