@@ -14,7 +14,7 @@ export async function POST(req) {
     const { data: user, error } = await supabaseAdmin
       .from('Owners_Login')
       .select('id, password, email')
-      // .eq('email', email)
+      .eq('email', email)
       .single();
 
     if (error || !user) {
