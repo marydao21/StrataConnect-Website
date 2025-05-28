@@ -11,10 +11,17 @@
   ],
   "functions": {
     "api/update-info.php": {
-      "runtime": "vercel-php@0.7.3"
+      "runtime": "vercel-php@0.7.3",
+      "memory": 1024,
+      "maxDuration": 10
     }
   },
   "routes": [
     { "src": "/api/update-info.php", "dest": "/api/update-info.php" }
-  ]
+  ],
+  "build": {
+    "env": {
+      "PHP_VERSION": "8.1"
+    }
+  }
 }
