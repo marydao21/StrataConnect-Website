@@ -15,7 +15,7 @@ export async function GET(request) {
     
     if (!error) {
       // Store the session
-      const response = NextResponse.redirect(new URL('/dashboard', request.url));
+      const response = NextResponse.redirect(new URL('/', request.url));
       response.cookies.set('supabase.auth.token', JSON.stringify(data.session), {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',

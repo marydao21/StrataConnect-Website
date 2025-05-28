@@ -13,7 +13,7 @@ export async function POST(req) {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+          redirectTo: 'https://strata-connect-green.vercel.app/auth/callback',
         },
       });
 
