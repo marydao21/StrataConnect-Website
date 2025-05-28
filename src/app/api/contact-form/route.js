@@ -17,19 +17,12 @@ export async function POST(req) {
     const phone = data.get("phone");
     const message = data.get("message");
 
-    // Get the user's ID from the Owners_Login table
+    // Check if user exists in Owners_Login table
     const { data: userData, error: userError } = await supabaseAdmin
       .from('Owners_Login')
       .select('id')
       .eq('email', email)
       .single();
-
-    if (userError || !userData) {
-      return new Response(JSON.stringify({ error: 'User not found' }), {
-        status: 404,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
 
     // Get the next sequential ID
     const { data: maxIdData, error: maxIdError } = await supabaseAdmin
@@ -42,21 +35,23 @@ export async function POST(req) {
     const nextId = maxIdData ? maxIdData.id + 1 : 1;
 
     // Insert the contact form data with the next sequential ID
-    const { error } = await supabaseAdmin
+    const { error: insertError } = await supabaseAdmin
       .from('Contacts')
       .insert([{
         id: nextId,
-        user_id: userData.id, // Store the user's ID as a foreign key
+        user_id: userData?.id || null, // Store user_id if user exists, null otherwise
         first_name: firstName,
         last_name: lastName,
         email,
         phone,
-        message
+        message,
+        is_registered_user: !!userData, // Flag to indicate if the contact is from a registered user
+        created_at: new Date().toISOString()
       }]);
 
-    if (error) {
-      console.error("❌ Supabase Insert Error:", error.message);
-      return new Response(JSON.stringify({ error: error.message }), {
+    if (insertError) {
+      console.error("❌ Supabase Insert Error:", insertError.message);
+      return new Response(JSON.stringify({ error: insertError.message }), {
         status: 500,
         headers: { "Content-Type": "application/json" },
       });
@@ -79,13 +74,16 @@ export async function POST(req) {
     return new Response(null, {
       status: 302,
       headers: {
-        'Location': 'https://strata-connect-green.vercel.app/thank-you',
+        'Location': '/thank-you',
         'Set-Cookie': [nameCookie, emailCookie, phoneCookie],
       },
     });
   } catch (err) {
     console.error("❌ Unexpected Error:", err);
-    return new Response("Server error", { status: 500 });
+    return new Response(JSON.stringify({ error: "An unexpected error occurred" }), { 
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
 

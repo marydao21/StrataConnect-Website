@@ -1,7 +1,37 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const formData = new FormData(e.target);
+      const response = await fetch('/api/contact-form', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to submit form');
+      }
+
+      // Redirect to thank you page on success
+      window.location.href = '/thank-you';
+    } catch (err) {
+      setError(err.message || 'An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-white text-green-900 relative min-h-screen">
       {/* Navigation Bar */}
@@ -51,8 +81,8 @@ export default function ContactPage() {
       <main className="max-w-4xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl font-bold text-green-800 mb-4">📞 Contact Us</h2>
         <p className="text-lg text-black mb-10">
-          We’re here to help.<br />
-          Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we’ll be in touch shortly.
+          We're here to help.<br />
+          Have a question about our services or need support with your strata scheme? The StrataConnect team is just a message away. Reach out to us via email or leave your details below, and we'll be in touch shortly.
         </p>
 
         {/* Enquiry Form Heading */}
@@ -60,10 +90,15 @@ export default function ContactPage() {
 
         {/* Enquiry Form */}
         <form 
-          method="POST" 
-          action="/api/contact-form" 
+          onSubmit={handleSubmit}
           className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6 text-left"
         >
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
+              {error}
+            </div>
+          )}
+          
           <div className="grid sm:grid-cols-2 gap-6">
             <input name="firstName" type="text" placeholder="First Name" required className="p-3 border rounded w-full" />
             <input name="lastName" type="text" placeholder="Last Name" required className="p-3 border rounded w-full" />
@@ -72,8 +107,12 @@ export default function ContactPage() {
           <input name="phone" type="tel" placeholder="Phone Number (optional)" className="p-3 border rounded w-full" />
           <textarea name="message" placeholder="Your enquiry, request or message..." required rows="5" className="p-3 border rounded w-full"></textarea>
           <div className="flex justify-center">
-            <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition">
-              Submit
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className={`bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </form>
