@@ -22,6 +22,9 @@ export default function ContactPage() {
 
       if (!response.ok) {
         const data = await response.json();
+        if (data.error === 'User not found') {
+          throw new Error('You must be logged in to submit the contact form. Please login first.');
+        }
         throw new Error(data.error || 'Failed to submit form');
       }
 
@@ -98,6 +101,13 @@ export default function ContactPage() {
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
               {error}
+              {error.includes('must be logged in') && (
+                <div className="mt-2">
+                  <Link href="/owners-login" className="text-green-700 underline font-semibold">
+                    Click here to login
+                  </Link>
+                </div>
+              )}
             </div>
           )}
           
