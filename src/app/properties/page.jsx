@@ -1,6 +1,38 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function RequestQuotePage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const formData = new FormData(e.target);
+      const response = await fetch('/api/request-quote', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to submit quote request');
+      }
+
+      // Redirect to thank you page on success
+      window.location.href = '/thank-you';
+    } catch (err) {
+      setError(err.message || 'An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-white text-green-900 relative min-h-screen">
       {/* Navigation Bar */}
@@ -31,14 +63,20 @@ export default function RequestQuotePage() {
           Looking for trusted, proactive strata management? Complete the form below and one of our friendly team members will be in touch shortly with a tailored quote for your property.
         </p>
 
-        <form action="/api/request-quote" method="POST" className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6">
+        <form onSubmit={handleSubmit} className="bg-gray-50 p-8 rounded-lg shadow-md space-y-6">
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
+              {error}
+            </div>
+          )}
+
           <div className="grid sm:grid-cols-2 gap-6">
             <input type="text" name="firstName" placeholder="First Name" required className="p-3 border rounded w-full" />
             <input type="text" name="lastName" placeholder="Last Name" required className="p-3 border rounded w-full" />
           </div>
           <input type="tel" name="phone" placeholder="Phone" required className="p-3 border rounded w-full" />
           <input type="email" name="email" placeholder="Email" required className="p-3 border rounded w-full" />
-          <input type="text" name="buildingName" placeholder="Plan or Building Name (if applicable)" className="p-3 border rounded w-full" />
+          <input type="text" name="planName" placeholder="Plan or Building Name (if applicable)" className="p-3 border rounded w-full" />
 
           <input type="text" name="address" placeholder="Street Address" required className="p-3 border rounded w-full" />
           <input type="text" name="address2" placeholder="Address Line 2" className="p-3 border rounded w-full" />
@@ -78,8 +116,12 @@ export default function RequestQuotePage() {
           </label>
 
           <div className="flex justify-center">
-            <button type="submit" className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition">
-              Submit Request
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className={`bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800 transition ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit Request'}
             </button>
           </div>
         </form>

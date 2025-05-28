@@ -37,7 +37,7 @@ export async function POST(req) {
       });
     }
 
-    // ✅ Login successful
+    // Login successful
     // Set cookies with the user ID and email
     const userIdCookie = serialize('user_id', user.id, {
       httpOnly: true,
