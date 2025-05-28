@@ -24,6 +24,15 @@ export async function POST(req) {
       .eq('email', email)
       .single();
 
+    if (userError || !userData) {
+      return new Response(JSON.stringify({ 
+        error: 'You must be logged in to submit the contact form. Please login first.' 
+      }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     // Get the next sequential ID
     const { data: maxIdData, error: maxIdError } = await supabaseAdmin
       .from('Contacts')
@@ -39,19 +48,20 @@ export async function POST(req) {
       .from('Contacts')
       .insert([{
         id: nextId,
-        user_id: userData?.id || null, // Store user_id if user exists, null otherwise
+        user_id: userData.id,
         first_name: firstName,
         last_name: lastName,
         email,
         phone,
         message,
-        is_registered_user: !!userData, // Flag to indicate if the contact is from a registered user
         created_at: new Date().toISOString()
       }]);
 
     if (insertError) {
       console.error("❌ Supabase Insert Error:", insertError.message);
-      return new Response(JSON.stringify({ error: insertError.message }), {
+      return new Response(JSON.stringify({ 
+        error: 'Unable to submit your message. Please try again later.' 
+      }), {
         status: 500,
         headers: { "Content-Type": "application/json" },
       });
@@ -80,7 +90,9 @@ export async function POST(req) {
     });
   } catch (err) {
     console.error("❌ Unexpected Error:", err);
-    return new Response(JSON.stringify({ error: "An unexpected error occurred" }), { 
+    return new Response(JSON.stringify({ 
+      error: 'An unexpected error occurred. Please try again later.' 
+    }), { 
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
