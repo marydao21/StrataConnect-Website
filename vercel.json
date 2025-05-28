@@ -10,10 +10,9 @@
     }
   ],
   "functions": {
-    "api/update-info.php": {
+    "api/*.php": {
       "runtime": "vercel-php@0.7.3",
-      "memory": 1024,
-      "maxDuration": 10
+      "excludeFiles": "{public/**,uploads/**,vendor/**,node_modules/**,*.cache,*.zip,*.json,.next/**}"
     }
   },
   "routes": [
