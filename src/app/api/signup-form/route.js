@@ -10,9 +10,9 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
-export async function POST(req) {
+export async function POST(request) {
   try {
-    const data = await req.formData();
+    const data = await request.formData();
 
     const firstName = data.get("firstName");
     const lastName = data.get("lastName");
@@ -172,7 +172,7 @@ export async function POST(req) {
   }
 }
 
-export async function GET(req) {
+export async function GET() {
   return new Response(JSON.stringify({ 
     error: "GET method not supported",
     redirect: '/signup'

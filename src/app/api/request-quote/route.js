@@ -50,7 +50,7 @@ export async function POST(req) {
     }
 
     // Get the next sequential ID
-    const { data: maxIdData, error: maxIdError } = await supabaseAdmin
+    const { data: maxIdData } = await supabaseAdmin
       .from('Request_Info')
       .select('id')
       .order('id', { ascending: false })
@@ -99,7 +99,7 @@ export async function POST(req) {
   }
 }
 
-export async function GET(req) {
+export async function GET() {
   return new Response("GET method not supported", {
     status: 405,
     headers: { "Allow": "POST" },
