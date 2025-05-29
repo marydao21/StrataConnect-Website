@@ -71,10 +71,9 @@ export default function ContactPage() {
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
           src="/images/contact-background.png"
-          alt="Contact Page Hero"
-          layout="fill"
-          objectFit="cover"
-          className="z-0"
+          alt="Contact StrataConnect"
+          fill
+          className="z-0 object-cover"
           priority
         />
         <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">

@@ -35,23 +35,21 @@ export async function POST(req) {
       });
     }
 
-    // Generate a UUID for user ID
-    const userId = crypto.randomUUID();
+    // Check if email already exists in custom tables
+    const [loginCheck, signupCheck] = await Promise.all([
+      supabaseAdmin
+        .from('Owners_Login')
+        .select('id')
+        .eq('email', email)
+        .single(),
+      supabaseAdmin
+        .from('Owners_Signup')
+        .select('id')
+        .eq('email', email)
+        .single()
+    ]);
 
-    // Check if email already exists
-    const { data: existingLogin } = await supabaseAdmin
-      .from('Owners_Login')
-      .select('id')
-      .eq('email', email)
-      .single();
-
-    const { data: existingSignup } = await supabaseAdmin
-      .from('Owners_Signup')
-      .select('id')
-      .eq('email', email)
-      .single();
-
-    if (existingLogin || existingSignup) {
+    if (loginCheck.data || signupCheck.data) {
       return new Response(JSON.stringify({ 
         error: 'An account with this email already exists',
         redirect: '/signup'
@@ -61,20 +59,56 @@ export async function POST(req) {
       });
     }
 
+    // Create user in Supabase Auth
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+        data: {
+          firstName,
+          lastName,
+          phone,
+          address,
+          suburb,
+          postcode,
+          state,
+          signup_date: new Date().toISOString(),
+        }
+      }
+    });
+
+    if (authError) {
+      console.error('Auth error:', authError);
+      return new Response(JSON.stringify({ 
+        error: authError.message,
+        redirect: '/signup'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Generate a UUID for user ID
+    const userId = crypto.randomUUID();
+
     // Insert into Owners_Login
     const { error: loginError } = await supabaseAdmin
       .from('Owners_Login')
       .insert([{
         id: userId,
         email,
-        password,
+        password, // This will be hashed by Supabase Auth
         is_active: true,
+        created_at: new Date().toISOString()
       }]);
 
     if (loginError) {
-      console.error('Login insert error:', loginError.message);
+      console.error('Login insert error:', loginError);
+      // Clean up: delete from auth
+      await supabaseAdmin.auth.admin.deleteUser(authData.user.id);
       return new Response(JSON.stringify({ 
-        error: 'Failed to create login account.',
+        error: 'Failed to create login account',
         redirect: '/signup'
       }), {
         status: 500,
@@ -88,7 +122,7 @@ export async function POST(req) {
       .insert([{
         id: userId,
         email,
-        password, // also stored here as requested
+        password, // This will be hashed by Supabase Auth
         first_name: firstName,
         last_name: lastName,
         phone,
@@ -97,14 +131,18 @@ export async function POST(req) {
         postcode,
         state,
         is_active: true,
+        created_at: new Date().toISOString()
       }]);
 
     if (signupError) {
-      console.error('Signup insert error:', signupError.message);
-      // Clean up: delete from login table
-      await supabaseAdmin.from('Owners_Login').delete().eq('id', userId);
+      console.error('Signup insert error:', signupError);
+      // Clean up: delete from both auth and login table
+      await Promise.all([
+        supabaseAdmin.auth.admin.deleteUser(authData.user.id),
+        supabaseAdmin.from('Owners_Login').delete().eq('id', userId)
+      ]);
       return new Response(JSON.stringify({ 
-        error: 'Failed to create signup account.',
+        error: 'Failed to create signup account',
         redirect: '/signup'
       }), {
         status: 500,
@@ -112,7 +150,7 @@ export async function POST(req) {
       });
     }
 
-    // ✅ Success
+    // Success
     return new Response(JSON.stringify({ 
       success: true,
       userId: userId,
@@ -125,7 +163,7 @@ export async function POST(req) {
   } catch (err) {
     console.error('❌ Unexpected error:', err);
     return new Response(JSON.stringify({ 
-      error: 'Unexpected error occurred.',
+      error: 'Unexpected error occurred',
       redirect: '/signup'
     }), {
       status: 500,

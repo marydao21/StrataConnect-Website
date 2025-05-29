@@ -35,11 +35,10 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
-          src="/images/Background for AboutUs page.webp"
+          src="/images/about-background.webp"
           alt="About StrataConnect"
-          layout="fill"
-          objectFit="cover"
-          className="z-0"
+          fill
+          className="z-0 object-cover"
           priority
         />
         <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-green-900 pl-0 pr-10 py-6 rounded-r-xl shadow-lg z-10">
@@ -52,7 +51,7 @@ export default function AboutPage() {
         <h2 className="text-3xl font-bold text-green-800 mb-2">StrataConnect – Shaping Smarter Communities</h2>
         <h3 className="text-2xl italic text-green-800 font-medium mb-6">Your Trusted Partner in Strata Management</h3>
         <p className="text-lg text-black mb-6">
-          At StrataConnect, we believe that strong communities begin with smart, transparent, and people-focused management. Since our inception, we’ve been on a mission to simplify strata living and ownership through innovative tools, personalized service, and a deep understanding of the unique needs of every building and community we serve.
+          At StrataConnect, we believe that strong communities begin with smart, transparent, and people-focused management. Since our inception, we've been on a mission to simplify strata living and ownership through innovative tools, personalized service, and a deep understanding of the unique needs of every building and community we serve.
         </p>
         <p className="text-lg text-black mb-6">
           From boutique apartment blocks to large-scale developments, we bring consistency, clarity, and care to every strata scheme—making life easier for owners, residents, and developers alike.
@@ -82,7 +81,7 @@ export default function AboutPage() {
         </p>
         <h3 className="text-2xl font-bold text-green-800 mb-4">Our Vision</h3>
         <p className="text-lg text-black">
-          To become the most trusted and innovative strata management partner in Australia, helping every client stay connected, in control, and confident in their community’s future.
+          To become the most trusted and innovative strata management partner in Australia, helping every client stay connected, in control, and confident in their community's future.
         </p>
       </section>
 

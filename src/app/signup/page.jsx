@@ -9,11 +9,13 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [message, setMessage] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setMessage('');
     setLoading(true);
 
     try {
@@ -30,7 +32,7 @@ export default function SignUp() {
       }
 
       if (result.success) {
-        router.push(result.redirect);
+        router.push('/signup-success');
       } else if (result.redirect) {
         router.push(result.redirect);
       }
@@ -73,7 +75,19 @@ export default function SignUp() {
         <h2 className="text-2xl font-bold text-green-800 mb-4">Create Your StrataConnect Account</h2>
         <p className="text-lg mb-8">Join our community of property owners.</p>
 
-        {error && <p className="text-red-600 text-sm text-center mb-6">{error}</p>}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded relative mb-6" role="alert">
+            <strong className="font-bold">Error: </strong>
+            <span className="block sm:inline">{error}</span>
+          </div>
+        )}
+
+        {message && (
+          <div className="bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded relative mb-6" role="alert">
+            <strong className="font-bold">Success! </strong>
+            <span className="block sm:inline">{message}</span>
+          </div>
+        )}
 
         {/* Signup Form */}
         <form onSubmit={handleSubmit} className="bg-gray-50 p-8 rounded-lg shadow space-y-6">
@@ -105,6 +119,7 @@ export default function SignUp() {
               type={showPassword ? "text" : "password"} 
               placeholder="Password" 
               required 
+              minLength={8}
               className="p-3 border rounded w-full pr-10" 
             />
             <button
@@ -131,6 +146,7 @@ export default function SignUp() {
               type={showConfirmPassword ? "text" : "password"} 
               placeholder="Confirm Password" 
               required 
+              minLength={8}
               className="p-3 border rounded w-full pr-10" 
             />
             <button
@@ -151,8 +167,24 @@ export default function SignUp() {
               )}
             </button>
           </div>
-          <button type="submit" disabled={loading} className="w-full bg-green-700 text-white py-3 rounded font-bold hover:bg-green-800 transition">
-            {loading ? 'Creating Account...' : 'Create Account'}
+          <button 
+            type="submit" 
+            disabled={loading} 
+            className={`w-full bg-green-700 text-white py-3 rounded font-bold hover:bg-green-800 transition ${
+              loading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+          >
+            {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Creating Account...
+              </span>
+            ) : (
+              'Create Account'
+            )}
           </button>
         </form>
 

@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -61,8 +60,8 @@ export default function Home() {
           <Image
             src="/images/picture3.jpg"
             alt="StrataConnect"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             className="absolute top-0 left-0 w-full h-full"
           />
         </div>

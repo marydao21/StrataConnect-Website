@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Home, Building2, Wallet, FileText } from 'lucide-react';
@@ -38,10 +37,9 @@ export default function ServicesPage() {
       <div className="relative w-full h-[500px] pt-20 overflow-hidden">
         <Image
           src="/images/picture4.avif"
-          alt="Strata Services"
-          layout="fill"
-          objectFit="cover"
-          className="z-0"
+          alt="StrataConnect Services"
+          fill
+          className="z-0 object-cover"
           priority
         />
         {/* SERVICES Label Box - darker green and fully left-aligned */}
