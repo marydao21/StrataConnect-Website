@@ -16,8 +16,9 @@ export default function ForgotPassword() {
     setMessage('');
 
     try {
-      const trimmedEmail = email.trim().toLowerCase();
+      const trimmedEmail = email.trim().toLowerCase(); // Normalize email input
       
+       // Use Supabase's built-in password reset functionality
       const { error } = await supabase.auth.resetPasswordForEmail(trimmedEmail, {
         redirectTo: `${window.location.origin}/reset-password`,
       });

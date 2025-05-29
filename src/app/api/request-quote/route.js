@@ -1,15 +1,18 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Create a Supabase client with the service role key for database operations
+// Create a Supabase client with admin privileges for secure database operations
 const supabaseAdmin = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+// Handle POST requests for quote requests
 export async function POST(req) {
   try {
+    // Extract form data from request
     const data = await req.formData();
   
+    // Get all required fields from form data
     const firstName = data.get('firstName');
     const lastName = data.get('lastName');
     const phone = data.get('phone');
@@ -28,6 +31,7 @@ export async function POST(req) {
     const comments = data.get('comments');
     const consent = data.has('consent'); // Check if consent checkbox was checked
   
+    // Log received quote request data
     console.log('Quote Request Received:', {
       firstName, lastName, phone, email, planName,
       address, address2, city, state, zip, country,
@@ -35,13 +39,14 @@ export async function POST(req) {
       consent
     });
 
-    // Get the user's ID from the Owners_Login table
+    // Verify user exists in Owners_Login table
     const { data: userData, error: userError } = await supabaseAdmin
       .from('Owners_Login')
       .select('id')
       .eq('email', email)
       .single();
 
+    // Handle case where user is not found
     if (userError || !userData) {
       return new Response(JSON.stringify({ error: 'User not found' }), {
         status: 404,
@@ -49,7 +54,7 @@ export async function POST(req) {
       });
     }
 
-    // Get the next sequential ID
+    // Get the next sequential ID for the quote request
     const { data: maxIdData } = await supabaseAdmin
       .from('Request_Info')
       .select('id')
@@ -59,7 +64,7 @@ export async function POST(req) {
 
     const nextId = maxIdData ? maxIdData.id + 1 : 1;
 
-    // Insert the request data with the next sequential ID
+    // Insert the quote request data into Request_Info table
     const { error } = await supabaseAdmin
       .from('Request_Info')
       .insert([{
@@ -84,6 +89,7 @@ export async function POST(req) {
         consent: consent
       }]);
 
+    // Handle database insertion errors
     if (error) {
       console.error("❌ Supabase Insert Error:", error.message);
       return new Response(JSON.stringify({ error: error.message }), {
@@ -92,13 +98,16 @@ export async function POST(req) {
       });
     }
 
+    // Redirect to thank you page on success
     return Response.redirect("https://strata-connect-green.vercel.app/thank-you", 302);
   } catch (err) {
+    // Handle any unexpected errors
     console.error("❌ Unexpected Error:", err);
     return new Response("Server error", { status: 500 });
   }
 }
 
+// Handle GET requests - Not allowed for quote requests
 export async function GET() {
   return new Response("GET method not supported", {
     status: 405,

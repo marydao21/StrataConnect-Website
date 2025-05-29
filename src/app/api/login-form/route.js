@@ -1,22 +1,26 @@
 import { createClient } from '@supabase/supabase-js';
 import { serialize } from 'cookie';
 
+// Create a Supabase client with admin privileges for secure database operations
 const supabaseAdmin = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+// Handle POST requests for user login
 export async function POST(req) {
   try {
+    // Extract email and password from request body
     const { email, password } = await req.json();
 
-    // Check if the user exists in Owners_Login
+    // Check if the user exists in Owners_Login table
     const { data: user, error } = await supabaseAdmin
       .from('Owners_Login')
       .select('id, password, email')
       .eq('email', email)
       .single();
 
+    // Handle case where user is not found
     if (error || !user) {
       return new Response(JSON.stringify({ 
         error: 'User not found. Please sign up first.',
@@ -27,6 +31,7 @@ export async function POST(req) {
       });
     }
 
+    // Verify password matches
     if (user.password !== password) {
       return new Response(JSON.stringify({ 
         error: 'Invalid password',
@@ -37,8 +42,7 @@ export async function POST(req) {
       });
     }
 
-    // Login successful
-    // Set cookies with the user ID and email
+    // Login successful - Set secure cookies for user session
     const userIdCookie = serialize('user_id', user.id, {
       httpOnly: true,
       path: '/',
@@ -54,6 +58,7 @@ export async function POST(req) {
       secure: process.env.NODE_ENV === 'production',
     });
 
+    // Return success response with user data and cookies
     return new Response(JSON.stringify({ 
       success: true,
       userId: user.id,
@@ -67,6 +72,7 @@ export async function POST(req) {
       }
     });
   } catch (err) {
+    // Handle any unexpected errors
     console.error('Login error:', err);
     return new Response(JSON.stringify({ 
       error: 'Login failed. Please try again.',
@@ -78,6 +84,7 @@ export async function POST(req) {
   }
 }
 
+// Handle GET requests - Not allowed for login
 export async function GET() {
   return new Response(JSON.stringify({ error: "GET method not allowed" }), {
     status: 405,

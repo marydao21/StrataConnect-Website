@@ -1,10 +1,12 @@
 'use client';
 
+// Import necessary dependencies for React, routing, and Supabase
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
+// State management for form handling and UI feedback
 export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -12,17 +14,18 @@ export default function Login() {
   const [magicLinkEmail, setMagicLinkEmail] = useState('');
   const [magicLinkSent, setMagicLinkSent] = useState(false);
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient(); // Initialize Supabase client for authentication
 
   // Check if user is already logged in
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/auth/check', {
+        const response = await fetch('/api/auth/check', {  // Call our custom API endpoint to verify authentication status
           method: 'GET',
           credentials: 'include',
         });
         
+        // If user is authenticated, redirect to dashboard
         if (response.ok) {
           router.push('/dashboard');
         }
@@ -34,17 +37,18 @@ export default function Login() {
     checkAuth();
   }, [router]);
 
+  // Handle regular email/password login form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
+    setError(''); // Clear any previous errors
+    setLoading(true); // Show loading state
 
     try {
       const formData = new FormData(e.target);
       const email = formData.get('email');
       const password = formData.get('password');
 
-      const response = await fetch('/api/login-form', {
+      const response = await fetch('/api/login-form', { // Call our custom login API endpoint
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,9 +80,10 @@ export default function Login() {
     }
   };
 
+  // Google Sign-in handler
   const handleGoogleSignIn = async () => {
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({  // Use Supabase's built-in OAuth functionality
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
@@ -93,13 +98,14 @@ export default function Login() {
     }
   };
 
+  // Handle magic link (passwordless) sign-in
   const handleMagicLinkSignIn = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithOtp({
+      const { error } = await supabase.auth.signInWithOtp({ // Use Supabase's OTP (One-Time Password) functionality
         email: magicLinkEmail,
         options: {
           emailRedirectTo: `${window.location.origin}/auth/callback`,

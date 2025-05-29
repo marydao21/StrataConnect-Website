@@ -1,10 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 
+// Create Supabase clients with different permission levels
+// Admin client for secure database operations
 const supabaseAdmin = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+// Regular client for public operations
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY
@@ -12,8 +15,10 @@ const supabase = createClient(
 
 export async function POST(request) {
   try {
+    // Extract form data from the request
     const data = await request.formData();
 
+    // Get all required fields from form data
     const firstName = data.get("firstName");
     const lastName = data.get("lastName");
     const email = data.get("email");
@@ -25,6 +30,7 @@ export async function POST(request) {
     const password = data.get("password");
     const confirmPassword = data.get("confirmPassword");
 
+    // Validate password match
     if (password !== confirmPassword) {
       return new Response(JSON.stringify({ 
         error: "Passwords do not match",
@@ -35,7 +41,8 @@ export async function POST(request) {
       });
     }
 
-    // Check if email already exists in custom tables
+    // Check if email already exists in both custom tables
+    // This prevents duplicate accounts
     const [loginCheck, signupCheck] = await Promise.all([
       supabaseAdmin
         .from('Owners_Login')
@@ -49,6 +56,7 @@ export async function POST(request) {
         .single()
     ]);
 
+    // Return error if email already exists
     if (loginCheck.data || signupCheck.data) {
       return new Response(JSON.stringify({ 
         error: 'An account with this email already exists',
@@ -60,6 +68,7 @@ export async function POST(request) {
     }
 
     // Create user in Supabase Auth
+    // This sets up the user's authentication
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,
@@ -78,6 +87,7 @@ export async function POST(request) {
       }
     });
 
+    // Handle authentication errors
     if (authError) {
       console.error('Auth error:', authError);
       return new Response(JSON.stringify({ 
@@ -92,20 +102,22 @@ export async function POST(request) {
     // Generate a UUID for user ID
     const userId = crypto.randomUUID();
 
-    // Insert into Owners_Login
+    // Insert user data into Owners_Login table
+    // This stores basic login information
     const { error: loginError } = await supabaseAdmin
       .from('Owners_Login')
       .insert([{
         id: userId,
         email,
-        password, // This will be hashed by Supabase Auth
+        password, // Note: This should be hashed in production
         is_active: true,
         created_at: new Date().toISOString()
       }]);
 
+    // Handle login table insertion errors
     if (loginError) {
       console.error('Login insert error:', loginError);
-      // Clean up: delete from auth
+      // Clean up: delete from auth if login table insertion fails
       await supabaseAdmin.auth.admin.deleteUser(authData.user.id);
       return new Response(JSON.stringify({ 
         error: 'Failed to create login account',
@@ -116,13 +128,14 @@ export async function POST(request) {
       });
     }
 
-    // Insert into Owners_Signup
+    // Insert user data into Owners_Signup table
+    // This stores detailed user information
     const { error: signupError } = await supabaseAdmin
       .from('Owners_Signup')
       .insert([{
         id: userId,
         email,
-        password, // This will be hashed by Supabase Auth
+        password, // Note: This should be hashed in production
         first_name: firstName,
         last_name: lastName,
         phone,
@@ -134,15 +147,17 @@ export async function POST(request) {
         created_at: new Date().toISOString()
       }]);
 
+    // Handle signup table insertion errors
     if (signupError) {
       console.error('Signup insert error:', signupError);
-      // Clean up: delete from both auth and login table
-      await Promise.all([
-        supabaseAdmin.auth.admin.deleteUser(authData.user.id),
-        supabaseAdmin.from('Owners_Login').delete().eq('id', userId)
-      ]);
+      // Clean up: delete from auth and login table if signup table insertion fails
+      await supabaseAdmin.auth.admin.deleteUser(authData.user.id);
+      await supabaseAdmin
+        .from('Owners_Login')
+        .delete()
+        .eq('id', userId);
       return new Response(JSON.stringify({ 
-        error: 'Failed to create signup account',
+        error: 'Failed to create user account',
         redirect: '/signup'
       }), {
         status: 500,
@@ -150,20 +165,21 @@ export async function POST(request) {
       });
     }
 
-    // Success
+    // Return success response
     return new Response(JSON.stringify({ 
       success: true,
-      userId: userId,
+      message: 'Account created successfully!',
       redirect: '/signup-success'
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
 
-  } catch (err) {
-    console.error('❌ Unexpected error:', err);
+  } catch (error) {
+    // Handle any unexpected errors
+    console.error('Signup error:', error);
     return new Response(JSON.stringify({ 
-      error: 'Unexpected error occurred',
+      error: 'An unexpected error occurred during signup',
       redirect: '/signup'
     }), {
       status: 500,
