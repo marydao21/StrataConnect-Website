@@ -7,7 +7,7 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-export async function GET(req) {
+export async function GET() {
   try {
     // Get the session from the request
     const { data: { session } } = await supabaseAdmin.auth.getSession();
