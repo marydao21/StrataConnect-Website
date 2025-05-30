@@ -1,12 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cookies } from 'next/headers';
 
-export default async function Home() {
-  const cookieStore = await cookies();
-  const userId = cookieStore.get('user_id');
-  const isLoggedIn = !!userId;
-
+export default function Home() {
   return (
     <div className="relative min-h-screen">
       {/* Navigation Bar */}
@@ -23,26 +18,16 @@ export default async function Home() {
             <Link href="/contact" className="hover:underline">Contact</Link>
           </nav>
           <div className="flex space-x-4">
-            {isLoggedIn ? (
-              <Link href="/api/logout">
-                <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
-                  LOGOUT
-                </button>
-              </Link>
-            ) : (
-              <>
-                <Link href="/owners-login">
-                  <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
-                    OWNERS LOGIN
-                  </button>
-                </Link>
-                <Link href="/payment">
-                  <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
-                    PAY MY LEVIES
-                  </button>
-                </Link>
-              </>
-            )}
+            <Link href="/owners-login">
+              <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
+                OWNERS LOGIN
+              </button>
+            </Link>
+            <Link href="/payment">
+              <button className="border border-white px-4 py-2 rounded text-white hover:bg-white hover:text-green-700 transition font-bold">
+                PAY MY LEVIES
+              </button>
+            </Link>
           </div>
         </div>
       </header>
