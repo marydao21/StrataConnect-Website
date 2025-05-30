@@ -10,37 +10,13 @@ export async function middleware(req) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // If there's a session, set both user ID and email cookies
+  // If there's a session, set the user ID in local storage
   if (session) {
     res.cookies.set('user_id', session.user.id, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
-    });
-    
-    res.cookies.set('user_email', session.user.email, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-    });
-  } else {
-    // If no session, clear the cookies
-    res.cookies.set('user_id', '', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-      expires: new Date(0),
-    });
-    
-    res.cookies.set('user_email', '', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-      expires: new Date(0),
     });
   }
 
@@ -55,8 +31,7 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - public folder
-     * - api routes (to avoid infinite loops)
      */
-    '/((?!_next/static|_next/image|favicon.ico|public/|api/).*)',
+    '/((?!_next/static|_next/image|favicon.ico|public/).*)',
   ],
 }; 
