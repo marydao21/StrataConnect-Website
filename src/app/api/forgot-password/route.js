@@ -6,85 +6,112 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-const supabaseAnon = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
-
 export async function POST(req) {
   try {
-    const { email } = await req.json();
-    const trimmedEmail = email.trim().toLowerCase();
+    const body = await req.json();
+    const trimmedEmail = body?.email?.trim().toLowerCase();
 
-    // 1. Check if email exists in Owners_Login
-    const { data: user, error: ownersError } = await supabaseAdmin
+    if (!trimmedEmail) {
+      return NextResponse.json({
+        success: false,
+        message: 'Email is required'
+      }, { status: 400 });
+    }
+
+    // Check Owners_Login table first
+    const { data: loginData, error: loginError } = await supabaseAdmin
       .from('Owners_Login')
-      .select('id')
+      .select('id, email')
       .eq('email', trimmedEmail)
       .single();
 
-    if (ownersError || !user) {
-      return NextResponse.json({
-        success: false,
-        message: 'No account found with this email. Please sign up to create an account.'
-      }, { status: 404 });
-    }
-
-    // 2. Check if email exists in Supabase Auth
-    let authUser = null;
-    let authError = null;
-
-    if (typeof supabaseAdmin.auth.admin.getUserByEmail === 'function') {
-      // Newer SDKs
-      const { data, error } = await supabaseAdmin.auth.admin.getUserByEmail(trimmedEmail);
-      authUser = data?.user;
-      authError = error;
-    } else {
-      // Older SDKs
-      const { data, error } = await supabaseAdmin.auth.admin.listUsers({ email: trimmedEmail });
-      authUser = data?.users?.[0];
-      authError = error;
-    }
-
-    if (authError || !authUser) {
-      return NextResponse.json({
-        success: false,
-        message: 'No account found with this email. Please sign up to create an account.'
-      }, { status: 404 });
-    }
-
-    // 3. If found in both, send password reset email using anon client
-    // Fallback to request origin if NEXT_PUBLIC_WEBSITE_URL is not set
-    let redirectBase = process.env.NEXT_PUBLIC_WEBSITE_URL;
-    if (!redirectBase) {
-      try {
-        const url = new URL(req.url);
-        redirectBase = url.origin;
-      } catch {
-        redirectBase = 'http://localhost:3000';
+    if (loginError) {
+      if (loginError.code === 'PGRST116') {
+        // No user found in login table, continue to check signup table
+      } else {
+        console.error('Login table error:', loginError);
+        return NextResponse.json({
+          success: false,
+          message: 'Error checking user account'
+        }, { status: 500 });
       }
     }
-    const redirectTo = `${redirectBase}/reset-password`;
 
-    const { error: resetError } = await supabaseAnon.auth.resetPasswordForEmail(trimmedEmail, {
-      redirectTo,
-    });
-    if (resetError) {
+    // If user found in login table
+    if (loginData) {
+      // Send password reset email using Supabase
+      const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
+        redirectTo: 'http://localhost:3000/reset-password'
+      });
+
+      if (resetError) {
+        console.error('Password reset error:', resetError);
+        return NextResponse.json({
+          success: false,
+          message: 'Failed to send reset email. Please try again.'
+        }, { status: 500 });
+      }
+
       return NextResponse.json({
-        success: false,
-        message: 'Failed to send reset email. Please try again later.'
-      }, { status: 500 });
+        success: true,
+        message: 'Password reset instructions have been sent to your email. The link will expire in 15 minutes.'
+      });
     }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Password reset email sent! Please check your inbox.'
-    });
-  } catch (error) {
-    console.error('Forgot password error:', error);
+    // If not found in login table, check signup table
+    const { data: signupData, error: signupError } = await supabaseAdmin
+      .from('Owners_Signup')
+      .select('id, email')
+      .eq('email', trimmedEmail)
+      .single();
+
+    if (signupError) {
+      if (signupError.code === 'PGRST116') {
+        // No user found in signup table
+        return NextResponse.json({
+          success: false,
+          message: 'No account found with this email address. Please sign up to create an account.'
+        }, { status: 404 });
+      } else {
+        console.error('Signup table error:', signupError);
+        return NextResponse.json({
+          success: false,
+          message: 'Error checking user account'
+        }, { status: 500 });
+      }
+    }
+
+    if (signupData) {
+      // Send password reset email using Supabase
+      const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
+        redirectTo: 'http://localhost:3000/reset-password'
+      });
+
+      if (resetError) {
+        console.error('Password reset error:', resetError);
+        return NextResponse.json({
+          success: false,
+          message: 'Failed to send reset email. Please try again.'
+        }, { status: 500 });
+      }
+
+      return NextResponse.json({
+        success: true,
+        message: 'Password reset instructions have been sent to your email. The link will expire in 15 minutes.'
+      });
+    }
+
+    // If not found in either table
     return NextResponse.json({
       success: false,
-      message: 'An error occurred. Please try again.'
+      message: 'No account found with this email address. Please sign up to create an account.'
+    }, { status: 404 });
+
+  } catch (error) {
+    console.error('Password reset error:', error);
+    return NextResponse.json({
+      success: false,
+      message: 'An error occurred while processing your request. Please try again.'
     }, { status: 500 });
   }
 } 

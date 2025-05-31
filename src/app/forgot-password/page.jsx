@@ -1,14 +1,32 @@
 'use client';
 
 import { useState } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Link from 'next/link';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const supabase = createClientComponentClient();
+  const [cooldown, setCooldown] = useState(0);
+
+  const startCooldown = () => {
+    setCooldown(300); // 5 minutes in seconds
+    const timer = setInterval(() => {
+      setCooldown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -16,19 +34,25 @@ export default function ForgotPassword() {
     setMessage('');
 
     try {
-      const trimmedEmail = email.trim().toLowerCase(); // Normalize email input
-      
-       // Use Supabase's built-in password reset functionality
-      const { error } = await supabase.auth.resetPasswordForEmail(trimmedEmail, {
-        redirectTo: `${window.location.origin}/reset-password`,
+      const response = await fetch('/api/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email.trim().toLowerCase() }),
       });
 
-      if (error) throw error;
-
-      setMessage('Password reset instructions have been sent to your email.');
-      setEmail('');
+      const result = await response.json();
+      setMessage(result.message);
+      
+      // Only clear email and start cooldown on success
+      if (response.ok) {
+        setEmail('');
+        startCooldown();
+      }
     } catch (error) {
-      setMessage(error.message || 'An error occurred. Please try again.');
+      console.error('Reset password error:', error);
+      setMessage('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -64,7 +88,7 @@ export default function ForgotPassword() {
                   setEmail(e.target.value);
                   setMessage('');
                 }}
-                disabled={isLoading}
+                disabled={isLoading || cooldown > 0}
               />
             </div>
           </div>
@@ -83,10 +107,16 @@ export default function ForgotPassword() {
             </div>
           )}
 
+          {cooldown > 0 && (
+            <div className="text-sm text-center text-gray-600">
+              Please wait {formatTime(cooldown)} before requesting another reset email.
+            </div>
+          )}
+
           <div>
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={isLoading || cooldown > 0}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
             >
               {isLoading ? (
