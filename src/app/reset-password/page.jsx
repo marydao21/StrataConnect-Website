@@ -40,6 +40,12 @@ export default function ResetPassword() {
         const refreshToken = params.get('refresh_token');
         const type = params.get('type');
 
+        // If we're on the root URL with a recovery token, redirect to reset-password
+        if (window.location.pathname === '/' && type === 'recovery' && accessToken) {
+          const newUrl = `/reset-password#${hash}`;
+          window.history.replaceState({}, '', newUrl);
+        }
+
         if (type === 'recovery' && accessToken) {
           // Set the session using both tokens
           const { data: { session }, error: sessionError } = await supabase.auth.setSession({
