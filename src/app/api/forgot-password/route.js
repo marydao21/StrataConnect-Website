@@ -6,10 +6,19 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+// Get the site URL based on environment
+const getSiteUrl = () => {
+  if (process.env.NODE_ENV === 'production') {
+    return 'https://strata-connect-green.vercel.app';
+  }
+  return 'http://localhost:3000';
+};
+
 export async function POST(req) {
   try {
     const body = await req.json();
     const trimmedEmail = body?.email?.trim().toLowerCase();
+    const siteUrl = getSiteUrl();
 
     if (!trimmedEmail) {
       return NextResponse.json({
@@ -41,9 +50,9 @@ export async function POST(req) {
     if (loginData) {
       // Send password reset email using Supabase
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
-        redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
+        redirectTo: `${siteUrl}/reset-password`,
         options: {
-          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password',
+          emailRedirectTo: `${siteUrl}/reset-password`,
           data: {
             redirectTo: '/reset-password'
           }
@@ -96,9 +105,9 @@ export async function POST(req) {
     if (signupData) {
       // Send password reset email using Supabase
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
-        redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
+        redirectTo: `${siteUrl}/reset-password`,
         options: {
-          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password',
+          emailRedirectTo: `${siteUrl}/reset-password`,
           data: {
             redirectTo: '/reset-password'
           }
