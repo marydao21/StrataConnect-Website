@@ -41,9 +41,9 @@ export async function POST(req) {
     if (loginData) {
       // Send password reset email using Supabase
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
-        redirectTo: 'https://strata-connect-green.vercel.app',
+        redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
         options: {
-          emailRedirectTo: 'https://strata-connect-green.vercel.app',
+          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password',
           data: {
             redirectTo: '/reset-password'
           }
@@ -96,9 +96,9 @@ export async function POST(req) {
     if (signupData) {
       // Send password reset email using Supabase
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
-        redirectTo: 'https://strata-connect-green.vercel.app',
+        redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
         options: {
-          emailRedirectTo: 'https://strata-connect-green.vercel.app',
+          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password',
           data: {
             redirectTo: '/reset-password'
           }
