@@ -21,56 +21,58 @@ export default function ResetPassword() {
     const checkSession = async () => {
       try {
         // Get parameters from both hash and query string
-        const hash = window.location.hash.substring(1);
-        const searchParams = new URLSearchParams(window.location.search);
-        const params = new URLSearchParams(hash || searchParams.toString());
-
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        const queryParams = new URLSearchParams(window.location.search);
+        
         // Check for error parameters
-        const error = params.get('error');
-        const errorCode = params.get('error_code');
-        const errorDescription = params.get('error_description');
-
-        if (error === 'access_denied' && errorCode === 'otp_expired') {
-          setIsValidLink(false);
-          setMessage('The password reset link has expired. Please request a new one.');
+        const error = hashParams.get('error') || queryParams.get('error');
+        const errorDescription = hashParams.get('error_description') || queryParams.get('error_description');
+        
+        if (error) {
+          if (error === 'access_denied' && errorDescription?.includes('expired')) {
+            setIsValidLink(false);
+            setMessage('The reset link has expired. Please request a new one.');
+            return;
+          }
+          setMessage(errorDescription || 'An error occurred. Please try again.');
+          setIsLoading(false);
           return;
         }
 
-        const accessToken = params.get('access_token');
-        const refreshToken = params.get('refresh_token');
-        const type = params.get('type');
+        // Get access token and refresh token from both hash and query
+        const accessToken = hashParams.get('access_token') || queryParams.get('access_token');
+        const refreshToken = hashParams.get('refresh_token') || queryParams.get('refresh_token');
 
-        // If we're on the root URL with a recovery token, redirect to reset-password
-        if (window.location.pathname === '/' && type === 'recovery' && accessToken) {
-          const newUrl = `/reset-password#${hash}`;
-          window.history.replaceState({}, '', newUrl);
-        }
-
-        if (type === 'recovery' && accessToken) {
-          // Set the session using both tokens
-          const { data: { session }, error: sessionError } = await supabase.auth.setSession({
-            access_token: accessToken,
-            refresh_token: refreshToken || ''
-          });
-
-          if (sessionError) {
-            console.error('Session error:', sessionError);
-            setIsValidLink(false);
-            setMessage('Invalid or expired reset link. Please request a new password reset.');
-            return;
-          }
-
-          if (session) {
-            setIsValidLink(true);
-          }
-        } else {
+        if (!accessToken || !refreshToken) {
           setIsValidLink(false);
-          setMessage('Invalid or expired reset link. Please request a new password reset.');
+          setMessage('Invalid reset link. Please request a new one.');
+          return;
         }
+
+        // Set the session
+        const { error: sessionError } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken
+        });
+
+        if (sessionError) {
+          console.error('Session error:', sessionError);
+          if (sessionError.message.includes('expired')) {
+            setMessage('The reset link has expired. Please request a new one.');
+          } else {
+            setMessage('Invalid reset link. Please request a new one.');
+          }
+          setIsLoading(false);
+          return;
+        }
+
+        setIsValidLink(true);
+        setIsLoading(false);
       } catch (error) {
         console.error('Session check error:', error);
         setIsValidLink(false);
-        setMessage('Invalid or expired reset link. Please request a new password reset.');
+        setMessage('An error occurred. Please try again.');
+        setIsLoading(false);
       }
     };
 
@@ -108,8 +110,8 @@ export default function ResetPassword() {
       return;
     }
 
-    if (password.length < 8) {
-      setMessage('Password must be at least 8 characters long');
+    if (password.length < 6) {
+      setMessage('Password must be at least 6 characters long');
       setIsLoading(false);
       return;
     }

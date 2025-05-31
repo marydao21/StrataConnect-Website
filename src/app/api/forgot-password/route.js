@@ -41,8 +41,9 @@ export async function POST(req) {
     if (loginData) {
       // Send password reset email using Supabase
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
-        redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
+        redirectTo: 'http://localhost:3000/reset-password',
         options: {
+          emailRedirectTo: 'http://localhost:3000/reset-password',
           data: {
             redirectTo: '/reset-password'
           }
@@ -51,6 +52,12 @@ export async function POST(req) {
 
       if (resetError) {
         console.error('Password reset error:', resetError);
+        if (resetError.message.includes('expired')) {
+          return NextResponse.json({
+            success: false,
+            message: 'The reset link has expired. Please request a new one.'
+          }, { status: 400 });
+        }
         return NextResponse.json({
           success: false,
           message: 'Failed to send reset email. Please try again.'
@@ -89,8 +96,9 @@ export async function POST(req) {
     if (signupData) {
       // Send password reset email using Supabase
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
-        redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
+        redirectTo: 'http://localhost:3000/reset-password',
         options: {
+          emailRedirectTo: 'http://localhost:3000/reset-password',
           data: {
             redirectTo: '/reset-password'
           }
@@ -99,6 +107,12 @@ export async function POST(req) {
 
       if (resetError) {
         console.error('Password reset error:', resetError);
+        if (resetError.message.includes('expired')) {
+          return NextResponse.json({
+            success: false,
+            message: 'The reset link has expired. Please request a new one.'
+          }, { status: 400 });
+        }
         return NextResponse.json({
           success: false,
           message: 'Failed to send reset email. Please try again.'

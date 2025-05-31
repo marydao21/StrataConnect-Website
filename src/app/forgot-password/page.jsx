@@ -7,12 +7,13 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [cooldown, setCooldown] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes in seconds
+  const [isValidLink, setIsValidLink] = useState(null); // null means loading
 
   const startCooldown = () => {
-    setCooldown(300); // 5 minutes in seconds
+    setTimeLeft(180); // 3 minutes in seconds
     const timer = setInterval(() => {
-      setCooldown((prev) => {
+      setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
           return 0;
@@ -88,7 +89,7 @@ export default function ForgotPassword() {
                   setEmail(e.target.value);
                   setMessage('');
                 }}
-                disabled={isLoading || cooldown > 0}
+                disabled={isLoading || timeLeft > 0}
               />
             </div>
           </div>
@@ -107,16 +108,16 @@ export default function ForgotPassword() {
             </div>
           )}
 
-          {cooldown > 0 && (
+          {timeLeft > 0 && (
             <div className="text-sm text-center text-gray-600">
-              Please wait {formatTime(cooldown)} before requesting another reset email.
+              Please wait {formatTime(timeLeft)} before requesting another reset email.
             </div>
           )}
 
           <div>
             <button
               type="submit"
-              disabled={isLoading || cooldown > 0}
+              disabled={isLoading || timeLeft > 0}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
             >
               {isLoading ? (
