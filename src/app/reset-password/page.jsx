@@ -20,9 +20,10 @@ export default function ResetPassword() {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        // Get the hash parameters from the URL
+        // Get parameters from both hash and query string
         const hash = window.location.hash.substring(1);
-        const params = new URLSearchParams(hash);
+        const searchParams = new URLSearchParams(window.location.search);
+        const params = new URLSearchParams(hash || searchParams.toString());
 
         // Check for error parameters
         const error = params.get('error');
