@@ -43,16 +43,13 @@ export async function POST(req) {
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
         redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
         options: {
-          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password',
-          data: {
-            redirectTo: '/reset-password'
-          }
+          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password'
         }
       });
 
       if (resetError) {
         console.error('Password reset error:', resetError);
-        if (resetError.message.includes('expired')) {
+        if (resetError.message.includes('expired') || resetError.message.includes('invalid')) {
           return NextResponse.json({
             success: false,
             message: 'The reset link has expired. Please request a new one.'
@@ -66,7 +63,7 @@ export async function POST(req) {
 
       return NextResponse.json({
         success: true,
-        message: 'Password reset instructions have been sent to your email. The link will expire in 15 minutes.'
+        message: 'Password reset instructions have been sent to your email. The link will expire in 3 minutes.'
       });
     }
 
@@ -98,16 +95,13 @@ export async function POST(req) {
       const { error: resetError } = await supabaseAdmin.auth.resetPasswordForEmail(trimmedEmail, {
         redirectTo: 'https://strata-connect-green.vercel.app/reset-password',
         options: {
-          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password',
-          data: {
-            redirectTo: '/reset-password'
-          }
+          emailRedirectTo: 'https://strata-connect-green.vercel.app/reset-password'
         }
       });
 
       if (resetError) {
         console.error('Password reset error:', resetError);
-        if (resetError.message.includes('expired')) {
+        if (resetError.message.includes('expired') || resetError.message.includes('invalid')) {
           return NextResponse.json({
             success: false,
             message: 'The reset link has expired. Please request a new one.'
@@ -121,7 +115,7 @@ export async function POST(req) {
 
       return NextResponse.json({
         success: true,
-        message: 'Password reset instructions have been sent to your email. The link will expire in 15 minutes.'
+        message: 'Password reset instructions have been sent to your email. The link will expire in 3 minutes.'
       });
     }
 
