@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 // Create a Supabase client with admin privileges
 const supabaseAdmin = createClient(
@@ -9,16 +10,37 @@ const supabaseAdmin = createClient(
 
 export async function GET() {
   try {
-    // Get the session from the request
-    const { data: { session } } = await supabaseAdmin.auth.getSession();
+    // Get cookies from the request
+    const cookieStore = await cookies();
+    const userId = cookieStore.get('user_id')?.value;
+    const userEmail = cookieStore.get('user_email')?.value;
 
-    // If there's no session or no user, return unauthorized
-    if (!session?.user) {
+    // If no user cookies are present, return unauthorized
+    if (!userId || !userEmail) {
       return NextResponse.json({ authenticated: false }, { status: 401 });
     }
 
-    // If we have a valid session with a user, return success
-    return NextResponse.json({ authenticated: true }, { status: 200 });
+    // Verify user exists in Owners_Login table
+    const { data: user, error } = await supabaseAdmin
+      .from('Owners_Login')
+      .select('id, email, is_active')
+      .eq('id', userId)
+      .eq('email', userEmail)
+      .single();
+
+    // If user not found or inactive, return unauthorized
+    if (error || !user || !user.is_active) {
+      return NextResponse.json({ authenticated: false }, { status: 401 });
+    }
+
+    // If we have a valid user, return success
+    return NextResponse.json({ 
+      authenticated: true,
+      user: {
+        id: user.id,
+        email: user.email
+      }
+    }, { status: 200 });
   } catch (error) {
     console.error('Auth check error:', error);
     return NextResponse.json({ authenticated: false }, { status: 500 });
