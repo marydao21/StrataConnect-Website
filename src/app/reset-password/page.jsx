@@ -20,6 +20,14 @@ export default function ResetPassword() {
   useEffect(() => {
     const checkSession = async () => {
       try {
+        // Check if we're on the root URL with a recovery token
+        if (window.location.pathname === '/' && window.location.hash.includes('type=recovery')) {
+          // Redirect to /reset-password while preserving the token
+          const hash = window.location.hash;
+          window.location.href = `/reset-password${hash}`;
+          return;
+        }
+
         // Get parameters from both hash and query string
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const queryParams = new URLSearchParams(window.location.search);
@@ -42,8 +50,9 @@ export default function ResetPassword() {
         // Get access token and refresh token from both hash and query
         const accessToken = hashParams.get('access_token') || queryParams.get('access_token');
         const refreshToken = hashParams.get('refresh_token') || queryParams.get('refresh_token');
+        const type = hashParams.get('type') || queryParams.get('type');
 
-        if (!accessToken || !refreshToken) {
+        if (!accessToken || !refreshToken || type !== 'recovery') {
           setIsValidLink(false);
           setMessage('Invalid reset link. Please request a new one.');
           return;
