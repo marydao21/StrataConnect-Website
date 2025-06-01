@@ -20,15 +20,13 @@ export default function Login() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/auth/check', {
+        const response = await fetch('/api/auth/check', {  // Call our custom API endpoint to verify authentication status
           method: 'GET',
           credentials: 'include',
         });
         
-        const data = await response.json();
-        
-        // Only redirect if the user is actually authenticated
-        if (response.ok && data.authenticated) {
+        // If user is authenticated, redirect to dashboard
+        if (response.ok) {
           router.push('/dashboard');
         }
       } catch (err) {
