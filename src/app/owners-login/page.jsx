@@ -25,9 +25,9 @@ export default function Login() {
           credentials: 'include',
         });
         
-        // If user is authenticated, redirect to dashboard
+        // We don't redirect anymore, just show the login form
         if (response.ok) {
-          router.push('/dashboard');
+          console.log('User is authenticated');
         }
       } catch (err) {
         console.error('Auth check failed:', err);
@@ -69,7 +69,8 @@ export default function Login() {
           localStorage.setItem('userId', result.userId);
           localStorage.setItem('userEmail', result.userEmail);
         }
-        router.push(result.redirect || '/dashboard');
+        // Redirect to login success page after successful login
+        router.push('/login-success');
       } else if (result.redirect) {
         router.push(result.redirect);
       }
