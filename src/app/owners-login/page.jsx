@@ -91,8 +91,7 @@ export default function Login() {
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',
-          },
-          skipBrowserRedirect: true,
+          }
         },
       });
 
