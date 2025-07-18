@@ -95,6 +95,8 @@ StrataConnect is a full-featured strata management platform that brings resident
    
    Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
 
+**Live Demo**: Visit [https://strata-connect-green.vercel.app/](https://strata-connect-green.vercel.app/) to see the deployed application.
+
 ## 📁 Project Structure
 
 ```
@@ -181,6 +183,8 @@ The application is fully responsive and optimized for:
 2. Set environment variables in Vercel dashboard
 3. Deploy automatically on push to main branch
 
+**Current Deployment**: This project is currently deployed at [https://strata-connect-green.vercel.app/](https://strata-connect-green.vercel.app/)
+
 ### Manual Deployment
 
 1. Build the application:
@@ -205,7 +209,7 @@ The application is fully responsive and optimized for:
 
 For support and inquiries:
 - **Email**: careers@strataconnect.com.au
-- **Website**: [StrataConnect](https://strataconnect.com.au)
+- **Website**: [StrataConnect](https://strata-connect-green.vercel.app/)
 
 ## 📄 License
 
