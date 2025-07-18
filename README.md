@@ -2,39 +2,39 @@
 
 A modern, comprehensive strata management website built with Next.js, designed to streamline communication and management for property owners, residents, and strata managers.
 
-## 🌟 Overview
+## Overview
 
 StrataConnect is a full-featured strata management platform that brings residents, owners, and strata managers together on one seamless platform. The application provides tools for staying informed, streamlining tasks, and enhancing community living with effortless communication and management capabilities.
 
-## ✨ Features
+## Features
 
-### 🏠 For Property Owners
+### For Property Owners
 - **Personalized Dashboard**: Access levy information, maintenance requests, meetings, and insurance details
 - **Online Levy Payments**: Secure payment processing for strata levies
 - **Document Access**: Fully digitized access to strata records and documentation
 - **Communication Portal**: Direct communication with strata managers via email, phone, or portal
 - **Real-time Updates**: Stay informed about community matters and maintenance
 
-### 🏢 For Developers
+### For Developers
 - **Scheme Setup**: Expert advice on strata scheme setup and structure
 - **Documentation**: Registering plans and creating custom by-laws
 - **Financial Planning**: Budgeting and striking levies during Initial Period
 - **Insurance Coordination**: Strata insurance management and coordination
 - **Handover Process**: Managing fit-out bonds and builder defect resolution
 
-### 💰 Financial Management
+### Financial Management
 - **Transparent Budgeting**: Fair and transparent levy calculations
 - **Real-time Reporting**: Access financial reports via the portal
 - **Flexible Payments**: Multiple payment options for levy management
 - **Arrears Control**: Proactive and professional debt management
 
-### 📋 Administrative Services
+### Administrative Services
 - **Digital Records**: Fully digitized document management system
 - **Meeting Coordination**: Agendas, notices, and minutes management
 - **Insurance Handling**: Quotes, renewals, and claims processing
 - **Compliance Management**: Fire safety and essential services compliance
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Frontend**: Next.js 15.2.4, React 19.1.0
 - **Styling**: Tailwind CSS 4
@@ -45,7 +45,7 @@ StrataConnect is a full-featured strata management platform that brings resident
 - **Validation**: Zod
 - **Deployment**: Vercel
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -97,7 +97,7 @@ StrataConnect is a full-featured strata management platform that brings resident
 
 **Live Demo**: Visit [https://strata-connect-green.vercel.app/](https://strata-connect-green.vercel.app/) to see the deployed application.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 strata-connect/
@@ -134,14 +134,14 @@ strata-connect/
 └── README.md                      # This file
 ```
 
-## 🔧 Available Scripts
+## Available Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
-## 🌐 Key Pages
+## Key Pages
 
 - **Home** (`/`) - Landing page with overview and call-to-action
 - **Services** (`/services`) - Detailed service offerings
@@ -152,7 +152,7 @@ strata-connect/
 - **Payment** (`/payment`) - Levy payment processing
 - **Properties** (`/properties`) - Property management interface
 
-## 🔐 Authentication
+## Authentication
 
 The application uses Supabase for authentication with the following features:
 - Email/password authentication
@@ -161,21 +161,21 @@ The application uses Supabase for authentication with the following features:
 - Protected routes and middleware
 - User session management
 
-## 💳 Payment Integration
+## Payment Integration
 
 - Secure levy payment processing
 - Multiple payment method support
 - Transaction history and receipts
 - Automated payment reminders
 
-## 📱 Responsive Design
+## Responsive Design
 
 The application is fully responsive and optimized for:
 - Desktop computers
 - Tablets
 - Mobile devices
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 
@@ -197,7 +197,7 @@ The application is fully responsive and optimized for:
    npm run start
    ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -207,11 +207,11 @@ The application is fully responsive and optimized for:
 
 
 
-## 📄 License
+## License
 
 This project is proprietary software. All rights reserved.
 
-## 🏢 About StrataConnect
+## About StrataConnect
 
 StrataConnect is a leading strata management company in Australia, committed to:
 - **Transparency**: Real-time insights and clear reporting
